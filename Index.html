@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="th"> 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"> <!-- can open in phone -->
+<title>Portfolio</title> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet"> <!-- use fonts Bai Jamjuree (Eng) , Kanit (Th) -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body> 
+<header class="bar"> <!-- top bar -->
+  <span class="brand">PORTFOLIO</span> 
+  <nav class="socials" aria-label="Social links">
+    <a href="https://www.facebook.com/profile.php?id=61573266497405" target="_blank" rel="noopener" aria-label="Facebook"><img src="Pictures/Facebook.jpg" alt=""></a>
+    <a href="https://www.instagram.com/mim_15106/" target="_blank" rel="noopener" aria-label="Instagram"><img src="Pictures/Instagram.jpg" alt=""></a> 
+    <a href="https://www.tiktok.com/@rawi.dp?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><img src="Pictures/TikTok.jpg" alt=""></a> 
+  </nav>
+  <span class="sp"></span>
+  <a id="homeLink" href="#/home" data-th="กลับหน้าหลัก" data-en="Home" hidden></a>
+  <button id="lang" type="button" aria-label="Change language / เปลี่ยนภาษา"><img id="langImg" alt=""></button> 
+</header> 
+
+<main class="page" id="home"> <!-- home page -->
+  <section class="intro">
+    <img src="Pictures/Portrait.jpg" alt=""> <!-- ❗ Don't forgot to change picture ❗ -->
+    <div class="who"> 
+      <h1> 
+        <span class="first" data-th="รวิสรา" data-en="Rawissara"></span> 
+        <span class="last" data-th="สุดสงวน" data-en="Sudsanguan"></span> 
+      </h1> 
+      <a class="btn" href="#/portfolio" data-th="ดูเพิ่มเติม" data-en="View more"></a> 
+    </div>
+  </section> 
+</main>
+
+<main class="page" id="portfolio" hidden> <!-- portfolio page (hide, will show when click button) -->
+  <h1 class="big" data-th="แฟ้มสะสมผลงาน" data-en="Portfolio"></h1> 
+  <div class="duo"> 
+    <a class="panel" href="#/about" style="--c:#0a0f1a"><span data-th="ประวัติส่วนตัว" data-en="About Me"></span></a>  <!-- ❗ will add picture -->
+    <a class="panel" href="#/projects" style="--c:#000"><span data-th="ผลงานและโครงงาน" data-en="Projects"></span></a> <!-- ❗ will add picture -->
+  </div> 
+</main> 
+
+<script src="script.js"></script>
+</body>
+</html>
