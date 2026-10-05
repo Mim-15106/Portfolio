@@ -18,6 +18,7 @@
     <a href="https://www.facebook.com/profile.php?id=61573266497405" target="_blank" rel="noopener" aria-label="Facebook"><img src="Pictures/Facebook.jpg" alt=""></a>
     <a href="https://www.instagram.com/mim_15106/" target="_blank" rel="noopener" aria-label="Instagram"><img src="Pictures/Instagram.jpg" alt=""></a> 
     <a href="https://www.tiktok.com/@rawi.dp?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><img src="Pictures/TikTok.jpg" alt=""></a> 
+    <button id="emailBtn" class="email" type="button" hidden>email</button> 
   </nav>
   <span class="sp"></span>
   <a id="homeLink" href="#/home" data-th="กลับหน้าหลัก" data-en="Home" hidden></a>
@@ -44,6 +45,48 @@
     <a class="panel" href="#/projects" style="--c:#000"><span data-th="ผลงานและโครงงาน" data-en="Projects"></span></a> <!-- ❗ will add picture -->
   </div> 
 </main> 
+
+<main class="page" id="about" hidden> <!-- About me page -->
+  <div class="ptitle"> 
+    <a class="back" href="#/portfolio" aria-label="Back">&lt;</a> <!-- "<"  -->
+    <h2 data-th="ประวัติส่วนตัว" data-en="About me"></h2> 
+  </div> 
+  <section class="about"> <!-- photo left, info right -->
+    <img src="Pictures/Photo.jpg" alt=""> <!-- photo -->
+    <div class="info"> <!-- info column -->
+      <dl> 
+        <dt data-th="ชื่อ :" data-en="Name :"></dt> 
+        <dd data-th="นางสาวรวิสรา สุดสงวน" data-en="Rawissara Sudsanguan"></dd> 
+        <dt data-th="ชื่อเล่น :" data-en="Nickname :"></dt> 
+        <dd data-th="มิ้ม" data-en="Mim"></dd> 
+        <dt data-th="โรงเรียน :" data-en="School :"></dt> 
+        <dd data-th="เซนต์เทเรซา" data-en="Saint Theresa"></dd>
+      </dl> 
+      <h3 data-th="ทักษะการใช้โปรแกรม" data-en="Software proficiency"></h3> 
+      <!-- skill-level ( 0-5 more in js) -->
+      <div class="sw"><span>Roblox Studio</span><div class="meter" data-level="5"></div></div> 
+      <div class="sw"><span>Godot</span><div class="meter" data-level="4"></div></div>
+      <div class="sw"><span>Unity</span><div class="meter" data-level="3"></div></div> 
+      <div class="sw"><span>Blender</span><div class="meter" data-level="2"></div></div> 
+      <div class="sw"><span>Figma</span><div class="meter" data-level="3"></div></div> 
+      <div class="skills"> <!-- Additional skills -->
+        <h3 data-th="ความสามารถเพิ่มเติม" data-en="Additional Skills"></h3> 
+        <button class="skill" type="button" data-th="การวาดรูป" data-en="Drawing"></button> 
+        <button class="skill" type="button" data-th="การออกแบบ" data-en="Design"></button>
+        <button class="skill" type="button" data-th="การตัดต่อวิดีโอ" data-en="Video Editing"></button> 
+        <button class="skill" type="button" data-th="การเขียนบทความภาษาอังกฤษ" data-en="English Writing"></button> 
+      </div> 
+    </div>
+  </section> 
+</main>
+
+<!-- SKILL POPUP -->
+<div class="modal" id="modal" hidden> <!-- the dark screen behind the popup-->
+  <div class="sq" role="dialog" aria-modal="true" aria-labelledby="mt"> <!-- the white square popup -->
+    <button class="x" type="button" id="xBtn" aria-label="Close">X</button> <!-- the X button -->
+    <h4 id="mt"></h4> <!-- the skill name shown in the popup (more in JS ) -->
+  </div> 
+</div> 
 
 <script src="script.js"></script>
 </body>

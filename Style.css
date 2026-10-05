@@ -47,9 +47,10 @@ a {
   padding: 1.1rem 4.7rem .9rem 2.3rem;
   border-bottom: .2rem solid var(--black); 
 }
-.brand { /* PORTFOLIO text */
-  font-size: 2.25rem; 
-  line-height: 1; 
+.brand {
+  font-family: 'Bai Jamjuree', system-ui, sans-serif;
+  font-size: 2.25rem;
+  line-height: 1;
   margin-right: 2rem;
 }
 .socials { /* the group of 3 icons */
@@ -214,9 +215,11 @@ a {
     gap: .8rem; 
     flex-wrap: wrap; 
   }
-  .brand { /* the logo text */
-    font-size: 1.7rem; 
-    margin-right: .2rem; 
+  .brand {
+  font-family: 'Bai Jamjuree', system-ui, sans-serif; 
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-right: 2rem;
   }
   .socials { /* the icon group */
     gap: .7rem; 
@@ -274,3 +277,220 @@ a {
   }
 }
 
+
+/* ---------- Email button ---------- */
+.email { 
+  background: var(--black); /* black box */
+  color: var(--white); /* white text */
+  text-decoration: none; /* remove the link underline */
+  font-size: 1.3rem; /* text size */
+  line-height: 1.1; /* line height */
+  padding: .15rem 4rem .15rem 1rem; /* space inside: top, right (long, makes the box wide), bottom, left */
+}
+
+/* ---------- Page About me ---------- */
+.ptitle { /* the title row */
+  display: flex; /* back button and title side by side */
+  align-items: center; /* centered vertically */
+  gap: 2.3rem; /* space between the button and the title */
+  padding: 1.1rem 1.5rem 1.55rem; /* space inside: top, left/right, bottom */
+}
+.ptitle h2 { /* the page title */
+  margin: 0; /* remove the default space */
+  color: var(--navy); /* dark blue letters */
+  font-size: 4rem; /* big letters */
+  line-height: 1.1; /* line height */
+  font-weight: 700; /* bold */
+}
+html[lang=th] .ptitle h2 { /* only in Thai */
+  font-weight: 600; /* slightly thinner for Thai letters */
+}
+html[lang=en] .ptitle h2 { /* only in English */
+  font-style: italic; /* slanted letters like your design */
+}
+.back { /* the "<" back button */
+  display: grid; /* lets us center the "<" easily */
+  place-items: center; /* center it horizontally and vertically */
+  flex: none; /* do not let the row squeeze the button */
+  width: 3.5rem; /* button width */
+  height: 3.5rem; /* button height */
+  border-radius: .75rem; /* rounded corners */
+  background: var(--navy); /* dark blue box */
+  color: var(--white); /* white "<" */
+  text-decoration: none; /* remove the link underline */
+  font-size: 1.3rem; /* "<" size */
+  font-weight: 700; /* bold "<" */
+}
+
+/* ---------- ABOUT ME PAGE ---------- */
+.about { /* the photo + information row */
+  display: flex; /* side by side */
+  justify-content: center; /* centered on the page */
+  gap: 6rem; /* space between photo and information */
+  padding: .85rem 1rem 4rem; /* space inside: top, left/right, bottom */
+}
+.about > img { /* photo */
+  display: block; /* remove the small gap under images */
+  flex: none; /* do not let the row squeeze the photo */
+  width: 15.9rem; /* photo width */
+  height: auto; /* keep the photo's shape */
+  align-self: flex-start; /* stick to the top of the row */
+  margin-top: 2.6rem; /* push it down a little */
+}
+.info { /* the information column */
+  width: 31.8rem; /* column width */
+  flex: none; /* do not let the row squeeze it */
+}
+.info dl { /* the Name / Nickname / School list */
+  display: grid; /* two columns: labels and values */
+  grid-template-columns: 9.7rem 1fr; /* labels column is 9.7rem wide, values take the rest */
+  gap: .7rem 0; /* space between rows (no space between columns) */
+  margin: 0 0 2.8rem; /* space below the list */
+}
+.info dt { /* the labels (Name :) */
+  font-weight: 700; /* bold */
+}
+.info dd { /* the values (Rawissara...) */
+  margin: 0; /* remove the default indent */
+}
+.info h3 { /* the small headings */
+  margin: 0 0 .8rem; /* space below the heading */
+  font-size: 1.5rem; /* text size */
+  font-weight: 700; /* bold */
+}
+.sw { /* one software row: name + skill bar */
+  display: grid; /* two columns */
+  grid-template-columns: 12rem 1fr; /* name column 12rem wide, bar takes the rest */
+  align-items: center; /* centered vertically */
+  margin: 0 0 .7rem; /* space below each row */
+}
+.meter { /* the skill bar (5 boxes) */
+  display: flex; /* boxes in one row */
+  width: 19.8rem; /* bar width */
+  height: 1.9rem; /* bar height */
+  border: .13rem solid var(--black); /* thin black outline */
+  border-radius: .75rem; /* rounded ends */
+  overflow: hidden; /* cut boxes at the rounded corners */
+}
+.meter i { /* one box inside the bar */
+  flex: 1; /* all 5 boxes share the width equally */
+  border-left: .13rem solid var(--black); /* thin line between boxes */
+}
+.meter i:first-child { /* the first box */
+  border-left: 0; /* no line on its left (the bar outline is already there) */
+}
+.meter i.on { /* a filled box (the JS adds class "on") */
+  background: var(--black); /* filled with black */
+}
+.skills { /* the Additional Skills group */
+  margin-top: 2.3rem; /* space above the group */
+}
+.skills h3 { /* the "Additional Skills" heading */
+  margin-bottom: .45rem; /* smaller space below it */
+}
+.skill { /* each skill word (drawing, design...) */
+  display: block; /* one per line */
+  border: 0; /* remove the button border */
+  background: none; /* remove the button background */
+  padding: .35rem 0; /* space above and below the word */
+  font: inherit; /* same font as the page text */
+  color: inherit; /* same color as the page text */
+  cursor: pointer; /* hand cursor on hover */
+  text-align: left; /* align to the left */
+}
+.skill:hover, .skill:focus-visible { /* when the mouse (or keyboard) is on a skill */
+  font-weight: 700; /* the word becomes bold */
+}
+
+/* ---------- Skill popup ---------- */
+.modal { /* the dark screen behind the popup */
+  position: fixed; /* stays on the screen even when scrolling */
+  inset: 0; /* cover the whole screen (all 4 edges at 0) */
+  z-index: 10; /* sit above everything else */
+  display: grid; /* lets us center the square */
+  place-items: center; /* center the square on the screen */
+  background: rgba(0, 0, 0, .5); /* black at 50% see-through */
+}
+.sq { /* the white square popup */
+  position: relative; /* lets the X button be placed inside its corner */
+  width: min(84vw, 26rem); /* 84% of the screen width, at most 26rem */
+  aspect-ratio: 1; /* height equals width = a square */
+  background: var(--white); /* white square */
+  border: 2px solid var(--black); /* black outline */
+  display: grid; /* lets us center the text */
+  place-items: center; /* center the text in the square */
+  padding: 1.5rem; /* space inside */
+  text-align: center; /* center the text */
+  animation: pop .22s ease-out; /* play the "pop" animation when it opens */
+}
+.sq h4 { /* the skill name in the popup */
+  margin: 0; /* remove the default space */
+  font-size: 1.6rem; /* text size */
+}
+.x { /* the X close button */
+  position: absolute; /* place it freely inside the square */
+  top: .5rem; /* 0.5rem from the top edge */
+  right: .5rem; /* 0.5rem from the right edge */
+  width: 2.2rem; /* button width */
+  height: 2.2rem; /* button height */
+  border: 0; /* no border */
+  border-radius: .5rem; /* rounded corners */
+  background: var(--navy); /* dark blue */
+  color: var(--white); /* white X */
+  font: 700 1rem/1 inherit; /* bold, 1rem text */
+  cursor: pointer; /* hand cursor on hover */
+}
+@keyframes pop { /* the "pop" animation: start slightly small and see-through, end normal */
+  from { /* the start */
+    opacity: 0; /* invisible */
+    transform: scale(.92); /* 92% of normal size */
+  }
+  to { /* the end */
+    opacity: 1; /* fully visible */
+    transform: none; /* normal size */
+  }
+}
+
+/* ---------- About me page is 10% smaller on a computer ---------- */
+@media (min-width: 961px) { /* only on wide screens */
+  #about { /* the About me page */
+    zoom: .9; /* shrink the whole page to 90% */
+  }
+}
+
+/* ---------- Phones: new rules for the pieces added in step 2 ---------- */
+@media (max-width: 960px) { /* only on small screens */
+  .email { /* email button */
+    font-size: 1rem; /* smaller text */
+    padding: .15rem 1.5rem .15rem .6rem; /* shorter box */
+  }
+  .ptitle { /* title row */
+    padding: 1rem; /* less space inside */
+    gap: 1rem; /* less space between button and title */
+  }
+  .ptitle h2 { /* page title */
+    font-size: 2.4rem; /* smaller */
+  }
+  .back { /* back button */
+    width: 2.6rem; /* smaller */
+    height: 2.6rem; /* smaller */
+  }
+  .about { /* photo + information */
+    flex-wrap: wrap; /* information moves under the photo */
+    gap: 1.5rem; /* smaller gap */
+    padding: 1rem 1rem 3rem; /* less space inside */
+  }
+  .about > img { /* photo */
+    width: 12rem; /* smaller */
+    margin-top: 0; /* no push-down */
+  }
+  .info { /* information column */
+    width: min(100%, 31.8rem); /* full width, at most 31.8rem */
+  }
+  .sw { /* software row */
+    grid-template-columns: 8.5rem 1fr; /* narrower name column */
+  }
+  .meter { /* skill bar */
+    width: min(100%, 19.8rem); /* fits small screens */
+  }
+}

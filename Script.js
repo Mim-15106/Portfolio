@@ -31,3 +31,56 @@ window.addEventListener("hashchange", route);
 
 setLang(lang); 
 route(); 
+
+// ---------- allow about me page ----------
+PAGES.push("about"); 
+route(); 
+
+// ---------- skill bars  ----------
+document.querySelectorAll(".meter").forEach(function (m) { // for every skill bar
+  var n = +m.dataset.level || 0; 
+  var h = ""; // starts empty
+  for (var i = 0; i < 5; i++) { // repeat 5 times - once per box
+    h += '<i' + (i < n ? ' class="on"' : '') + '></i>'; // add one box; give it class "on" (filled) if its position is below the level
+  } 
+  m.innerHTML = h; // put boxes inside bar
+}); 
+
+// ---------- Popup ----------
+function closeModal() { // closes  popup function
+  $("#modal").hidden = true; 
+} 
+document.querySelectorAll(".skill").forEach(function (b) { // button for every additional kills
+  b.addEventListener("click", function () { 
+    $("#mt").textContent = b.textContent; 
+    $("#modal").hidden = false; 
+    $("#xBtn").focus(); 
+  }); 
+}); 
+$("#xBtn").addEventListener("click", closeModal); // clicking the X button closes the popup
+$("#modal").addEventListener("click", function (e) { // clicking anywhere on the dark area
+  if (e.target === this) closeModal(); 
+}); 
+document.addEventListener("keydown", function (e) { // when any key is pressed
+  if (e.key === "Escape") closeModal(); //  Esc key = close the popup
+}); 
+
+// ---------- Email button + closing the popup when the page changes ----------
+var emailBtn = $("#emailBtn");               // find the email button
+function resetEmail() {                      // put the button back to "email"
+  emailBtn.classList.remove("open");
+  emailBtn.textContent = "email";
+}
+emailBtn.addEventListener("click", function () {   // on every click
+  var open = emailBtn.classList.toggle("open");    // switch open on-off
+  emailBtn.textContent = open ? "emailnoomim@gmail.com" : "email"; // show the address or the word
+});
+
+function updateAboutExtras() { // a function for things that depend on the current page
+  var p = location.hash.replace("#/", ""); // read the current page name from the address
+  $("#emailBtn").hidden = p !== "about"; // show the email button only on the About me page
+  resetEmail();   // always go back to "email" when the page changes
+  closeModal(); // close the popup whenever the page changes
+} // end of updateAboutExtras
+window.addEventListener("hashchange", updateAboutExtras); // run it every time the address changes
+updateAboutExtras(); // run it once now, for the page that is open at the start
