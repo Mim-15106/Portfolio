@@ -494,3 +494,131 @@ html[lang=en] .ptitle h2 { /* only in English */
     width: min(100%, 19.8rem); /* fits small screens */
   }
 }
+
+
+/* ---------- PROJECTS PAGE ---------- */
+.hero { /* the Robot Bartender banner */
+  display: grid; /* two columns: picture and text */
+  grid-template-columns: 63fr 37fr; /* picture takes 63% of the width, text panel 37% */
+  background: #282828; /* dark gray behind the text */
+  color: var(--white); /* white text */
+  text-decoration: none; /* remove the link underline */
+  overflow: hidden; /* hide the picture when it zooms past the edge */
+}
+.himg, .card .frame { /* the picture boxes (banner picture and each card picture) */
+  position: relative; /* lets the picture fill the box */
+  display: block; /* behaves like a box */
+  overflow: hidden; /* cut the picture when it zooms */
+  background: var(--black); /* black behind the picture */
+}
+.himg { /* the banner picture box */
+  aspect-ratio: 16/9; /* shape of the box: 16 wide for every 9 tall */
+}
+.bg { /* every picture inside those boxes */
+  position: absolute; /* fill the box */
+  inset: 0; /* stretch to all 4 edges */
+  width: 100%; /* full width */
+  height: 100%; /* full height */
+  object-fit: cover; /* fill the whole box and crop the extra */
+  transition: transform .6s ease; /* make zooming smooth (0.6 seconds) */
+}
+.fit { /* pictures that should be shown whole (not cropped) */
+  object-fit: contain; /* show the whole picture inside the box */
+}
+.hero:hover .bg, .card:hover .bg, .hero:focus-visible .bg, .card:focus-visible .bg { /* when the mouse (or keyboard) is on a banner or card */
+  transform: scale(1.06); /* zoom the picture in by 6% */
+}
+.hero .txt { /* the text panel */
+  display: block; /* behaves like a box */
+  padding: 3.5rem 2.4rem 2rem; /* space inside: top, left/right, bottom */
+}
+.hero small { /* "Innovation Project" line */
+  display: block; /* its own line */
+  font-size: 2.2rem; /* text size */
+  line-height: 1.2; /* line height */
+  font-weight: 300; /* thin letters */
+}
+.hero b { /* "Robot Bartender" */
+  display: block; /* its own line */
+  font-size: 2.8rem; /* bigger text */
+  font-weight: 400; /* normal letters */
+  line-height: 1.1; /* line height */
+}
+html[lang=en] .hero small, html[lang=en] .hero b { /* only in English */
+  font-style: italic; /* slanted letters like your design */
+}
+.hero p { /* the description */
+  margin: 1.5rem 0 0 2.9rem; /* space around it: top, right, bottom, left (indented) */
+  font-size: 1.5rem; /* text size */
+  line-height: 2; /* space between lines */
+  font-weight: 300; /* thin letters */
+}
+.cards { /* the box holding the project cards */
+  display: grid; /* cards in a grid */
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 3rem 1.8rem; /* space between rows and between columns */
+  padding: 1.9rem 3.6rem 3.5rem; /* space inside: top, left/right, bottom */
+}
+.card { /* each project card */
+  text-decoration: none; /* remove the link underline */
+  text-align: center; /* center the caption */
+}
+.card .frame { /* the picture frame of a card */
+  aspect-ratio: 193/100; /* shape of the frame */
+  border: 2px solid var(--black); /* the thin black border around each picture */
+}
+.card .frame.w { /* frames whose picture is shown whole on white */
+  background: var(--white); /* white behind the picture */
+}
+.card span { /* the caption under a card picture */
+  display: block; /* its own line */
+  margin-top: .8rem; /* space above the caption */
+  font-size: 1.5rem; /* text size (same as the About me text) */
+  line-height: 1.3; /* line height */
+}
+html[lang=en] .card span { /* only in English */
+  font-style: italic; /* slanted letters like your design */
+}
+
+/* Projects pages are 10% smaller on a computer  */
+@media (min-width: 961px) { /* only on wide screens */
+  #projects, #project { /* the Projects page and the blank project page */
+    zoom: .9; /* shrink them to 90% (the About me page got the same in step 2) */
+  }
+}
+
+/*  Phones: new rules for the pieces added in step 3  */
+@media (max-width: 960px) { /* only on small screens */
+  .hero .txt { /* the text panel */
+    padding: 1.5rem 1.2rem; /* less space inside */
+  }
+  .hero small { /* "Innovation Project" */
+    font-size: 1.4rem; /* smaller */
+  }
+  .hero b { /* "Robot Bartender" */
+    font-size: 2rem; /* smaller */
+  }
+  .hero p { /* the description */
+    font-size: 1.2rem; /* smaller */
+    line-height: 1.8; /* tighter lines */
+    margin-left: 1rem; /* smaller indent */
+  }
+  .cards { /* the cards grid */
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    padding: 1.5rem 1rem 2rem; /* less space inside */
+    gap: 1.5rem 1rem; /* smaller gaps */
+  }
+  .card span { /* card caption */
+    font-size: 1.2rem; /* smaller */
+  }
+}
+@media (max-width: 700px) { /* on narrow phones */
+  .hero { /* the banner */
+    grid-template-columns: 1fr; /* picture on top, text below (one column) */
+  }
+}
+@media (max-width: 520px) { /* on very narrow phones */
+  .cards { /* the cards grid */
+    grid-template-columns: 1fr; /* one card per row */
+  }
+}

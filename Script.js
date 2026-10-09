@@ -84,3 +84,34 @@ function updateAboutExtras() { // a function for things that depend on the curre
 } // end of updateAboutExtras
 window.addEventListener("hashchange", updateAboutExtras); // run it every time the address changes
 updateAboutExtras(); // run it once now, for the page that is open at the start
+
+
+PAGES.push("projects", "project"); // add the Projects page and the blank project page to the list of pages that exist
+
+// Project pictures and cards 
+var PICS = { // the picture file for each project (name on the left, file on the right)
+  obby: "Pictures/RobloxGame.png", // Roblox game
+  math: "Pictures/MathFight.jpg", // math game
+  scratch: "Pictures/ScratchGame.jpg", // Scratch game
+  micro: "Pictures/Microbit.jpg", // micro:bit project
+  site: "Pictures/PortfolioWebsite.jpg" // this portfolio website
+}; 
+// Each card is: [Thai caption, English caption, picture name, true = show the whole picture on white]
+var CARDS = [ // the list of project cards
+  ["โปรเจกต์พัฒนาเกมบนแพลตฟอร์ม Roblox", "Roblox Game", "obby"], // card 1: picture fills the frame
+  ["เกมเสริมการเรียนรู้คณิตศาสตร์", "Math Game", "math"], // card 2
+  ["โปรเจกต์เกมจากโปรแกรม Scratch", "Scratch Game", "scratch"], // card 3
+  ["โปรเจกต์จากไมโครบิต", "Project From Microbit", "micro", true], // card 4: whole picture on white
+  ["เว็บไซต์พอร์ตโฟลิโอ", "Portfolio Website", "site", true] // card 5: whole picture on white
+]; // end of the list
+
+$("#cards").innerHTML = CARDS.map(function (c) { // turn every card in the list into HTML text...
+  return '<a class="card" href="#/project">' + // ...a link; clicking opens the blank project page
+    '<span class="frame' + (c[3] ? ' w' : '') + '">' + // ...the picture frame (adds class "w" for white background when c[3] is true)
+    '<img class="bg' + (c[3] ? ' fit' : '') + '" src="' + PICS[c[2]] + '" alt=""></span>' + // ...the picture (class "fit" = show it whole)
+    '<span data-th="' + c[0] + '" data-en="' + c[1] + '"></span>' + 
+    '</a>'; // ...end of the link
+}).join(""); // glue all cards together and put them inside the #cards box
+
+setLang(lang); // run the language again so the new captions get their Thai / English text
+route(); // run route() again so that opening ...#/projects directly also works

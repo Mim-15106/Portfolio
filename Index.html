@@ -88,6 +88,28 @@
   </div> 
 </div> 
 
+
+<main class="page" id="projects" hidden> <!-- Projects page -->
+  <div class="ptitle">
+    <a class="back" href="#/portfolio" aria-label="Back">&lt;</a> <!-- "<" button -->
+    <h2 data-th="ผลงานและโครงงาน" data-en="Projects"></h2> <!-- page title -->
+  </div> 
+  <a class="hero" href="#/project"> <!-- the big Robot Bartender banner; click opens the blank project page -->
+    <span class="himg"><img class="bg" src="Pictures/RobotBartender.gif" alt=""></span> <!-- the picture on the left; it zooms in a little when the mouse is over the banner -->
+    <span class="txt"> <!-- the dark text panel on the right -->
+      <small data-th="โครงงานนวัตกรรม" data-en="Innovation Project"></small> <!-- small line: "Innovation Project" -->
+      <b>Robot Bartender</b> <!-- project name (it same in both languages) -->
+      <p data-th="นวัตกรรมนี้พัฒนาขึ้นเพื่อเพิ่มประสิทธิภาพในด้านความรวดเร็วและความแม่นยำในการเตรียมเครื่องดื่ม" data-en="This innovation was developed to improve efficiency in terms of speed and accuracy in beverage preparation."></p> <!-- the project description -->
+    </span> 
+  </a> 
+  <div class="cards" id="cards"></div> <!-- an empty box; let JS fills  -->
+</main> 
+
+<!-- blank page (of each projects) ========== -->
+<main class="page" id="project" hidden> 
+  <div class="ptitle"><a class="back" href="#/projects" aria-label="Back">&lt;</a></div> <!-- only a "<" button, which goes back to the Projects page -->
+</main>
+
 <script src="script.js"></script>
 </body>
 </html>
