@@ -40,9 +40,9 @@
 
 <main class="page" id="portfolio" hidden> <!-- portfolio page (hide, will show when click button) -->
   <h1 class="big" data-th="แฟ้มสะสมผลงาน" data-en="Portfolio"></h1> 
-  <div class="duo"> 
-    <a class="panel" href="#/about" style="--c:#0a0f1a"><span data-th="ประวัติส่วนตัว" data-en="About Me"></span></a>  <!-- ❗ will add picture -->
-    <a class="panel" href="#/projects" style="--c:#000"><span data-th="ผลงานและโครงงาน" data-en="Projects"></span></a> <!-- ❗ will add picture -->
+  <div class="duo"> <!-- the box holding the two big panels -->
+    <a class="panel" href="#/about" style="--c:#0a0f1a; --img:url(Pictures/LeftPicture.png)"><span data-th="ประวัติส่วนตัว" data-en="About Me"></span></a> 
+    <a class="panel" href="#/projects" style="--c:#000; --img:url(Pictures/RightPicture.png)"><span data-th="ผลงานและโครงงาน" data-en="Projects"></span></a> 
   </div> 
 </main> 
 
@@ -69,24 +69,13 @@
       <div class="sw"><span>Unity</span><div class="meter" data-level="3"></div></div> 
       <div class="sw"><span>Blender</span><div class="meter" data-level="2"></div></div> 
       <div class="sw"><span>Figma</span><div class="meter" data-level="3"></div></div> 
-      <div class="skills"> <!-- Additional skills -->
+      <div class="skills"> <!-- the Additional Skills group -->
         <h3 data-th="ความสามารถเพิ่มเติม" data-en="Additional Skills"></h3> 
-        <button class="skill" type="button" data-th="การวาดรูป" data-en="Drawing"></button> 
-        <button class="skill" type="button" data-th="การออกแบบ" data-en="Design"></button>
-        <button class="skill" type="button" data-th="การตัดต่อวิดีโอ" data-en="Video Editing"></button> 
-        <button class="skill" type="button" data-th="การเขียนบทความภาษาอังกฤษ" data-en="English Writing"></button> 
+        <p class="skillline" data-th="การวาดรูป | การออกแบบ | การสื่อสารเพื่อประสานงาน" data-en="Drawing | Design | Communication"></p> 
       </div> 
     </div>
   </section> 
 </main>
-
-<!-- SKILL POPUP -->
-<div class="modal" id="modal" hidden> <!-- the dark screen behind the popup-->
-  <div class="sq" role="dialog" aria-modal="true" aria-labelledby="mt"> <!-- the white square popup -->
-    <button class="x" type="button" id="xBtn" aria-label="Close">X</button> <!-- the X button -->
-    <h4 id="mt"></h4> <!-- the skill name shown in the popup (more in JS ) -->
-  </div> 
-</div> 
 
 
 <main class="page" id="projects" hidden> <!-- Projects page -->
@@ -94,15 +83,22 @@
     <a class="back" href="#/portfolio" aria-label="Back">&lt;</a> <!-- "<" button -->
     <h2 data-th="ผลงานและโครงงาน" data-en="Projects"></h2> <!-- page title -->
   </div> 
-  <a class="hero" href="#/project"> <!-- the big Robot Bartender banner; click opens the blank project page -->
-    <span class="himg"><img class="bg" src="Pictures/RobotBartender.gif" alt=""></span> <!-- the picture on the left; it zooms in a little when the mouse is over the banner -->
-    <span class="txt"> <!-- the dark text panel on the right -->
-      <small data-th="โครงงานนวัตกรรม" data-en="Innovation Project"></small> <!-- small line: "Innovation Project" -->
-      <b>Robot Bartender</b> <!-- project name (it same in both languages) -->
-      <p data-th="นวัตกรรมนี้พัฒนาขึ้นเพื่อเพิ่มประสิทธิภาพในด้านความรวดเร็วและความแม่นยำในการเตรียมเครื่องดื่ม" data-en="This innovation was developed to improve efficiency in terms of speed and accuracy in beverage preparation."></p> <!-- the project description -->
-    </span> 
-  </a> 
-  <div class="cards" id="cards"></div> <!-- an empty box; let JS fills  -->
+  <div class="herowrap"> <!-- wrapper around the banner so the arrow button can sit on its bottom-right corner (a button cannot be nested inside a link in valid HTML) -->
+    <a class="hero" href="#/project"> <!-- the Robot Bartender banner, unchanged -->
+      <span class="himg"><img class="bg" src="Pictures/RobotBartender.gif" alt=""></span> <!-- picture on the left -->
+      <span class="txt"> <!-- dark text panel on the right -->
+        <small data-th="โครงงานนวัตกรรม" data-en="Innovation Project"></small> <!-- small line -->
+        <b>Robot Bartender</b> <!-- project name -->
+        <p data-th="นวัตกรรมนี้พัฒนาขึ้นเพื่อเพิ่มประสิทธิภาพในด้านความรวดเร็วและความแม่นยำในการเตรียมเครื่องดื่ม" data-en="This innovation was developed to improve efficiency in terms of speed and accuracy in beverage preparation."></p> 
+      </span>
+    </a>
+    <button class="dl" id="dlBtn" type="button" aria-label="Scroll down"><img src="Pictures/GoDown.png" alt=""></button> <!-- white arrow button bounces up and down, click = scrolls to the bottom , more in JS -->
+  </div> <!-- end of the wrapper -->
+  <div class="cards" id="cards"></div> 
+    <a class="webbar" href="#/web"> 
+      <span data-th="เว็บไซต์พอร์ตโฟลิโอ" data-en="Portfolio Website"></span> 
+      <img src="Pictures/Github.png" alt="">
+    </a>
 </main> 
 
 <!-- blank page (of each projects) ========== -->

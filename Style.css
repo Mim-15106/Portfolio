@@ -45,7 +45,10 @@ a {
   align-items: center; 
   gap: 1.4rem; 
   padding: 1.1rem 4.7rem .9rem 2.3rem;
-  border-bottom: .2rem solid var(--black); 
+  border-bottom: .2rem solid var(--black);
+  position: relative; 
+  z-index: 5; 
+  background: var(--white); 
 }
 .brand {
   font-family: 'Bai Jamjuree', system-ui, sans-serif;
@@ -146,8 +149,7 @@ a {
   flex: none; 
   width: 26.3rem; 
   height: 34rem; 
-  background: var(--c) var(--img, none) center/cover;
-  color: var(--white); 
+  background: var(--c);  color: var(--white); 
   text-align: center;
   text-decoration: none;
   font-size: 2.9rem; 
@@ -213,7 +215,10 @@ a {
   .bar { /* the top bar */
     padding: .8rem 1rem; 
     gap: .8rem; 
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
+    position: relative; 
+    z-index: 5; 
+    background: var(--white);  
   }
   .brand {
   font-family: 'Bai Jamjuree', system-ui, sans-serif; 
@@ -305,9 +310,7 @@ a {
 html[lang=th] .ptitle h2 { /* only in Thai */
   font-weight: 600; /* slightly thinner for Thai letters */
 }
-html[lang=en] .ptitle h2 { /* only in English */
-  font-style: italic; /* slanted letters like your design */
-}
+
 .back { /* the "<" back button */
   display: grid; /* lets us center the "<" easily */
   place-items: center; /* center it horizontally and vertically */
@@ -382,73 +385,8 @@ html[lang=en] .ptitle h2 { /* only in English */
 .meter i.on { /* a filled box (the JS adds class "on") */
   background: var(--black); /* filled with black */
 }
-.skills { /* the Additional Skills group */
+s { /* the Additional Skills group */
   margin-top: 2.3rem; /* space above the group */
-}
-.skills h3 { /* the "Additional Skills" heading */
-  margin-bottom: .45rem; /* smaller space below it */
-}
-.skill { /* each skill word (drawing, design...) */
-  display: block; /* one per line */
-  border: 0; /* remove the button border */
-  background: none; /* remove the button background */
-  padding: .35rem 0; /* space above and below the word */
-  font: inherit; /* same font as the page text */
-  color: inherit; /* same color as the page text */
-  cursor: pointer; /* hand cursor on hover */
-  text-align: left; /* align to the left */
-}
-.skill:hover, .skill:focus-visible { /* when the mouse (or keyboard) is on a skill */
-  font-weight: 700; /* the word becomes bold */
-}
-
-/* ---------- Skill popup ---------- */
-.modal { /* the dark screen behind the popup */
-  position: fixed; /* stays on the screen even when scrolling */
-  inset: 0; /* cover the whole screen (all 4 edges at 0) */
-  z-index: 10; /* sit above everything else */
-  display: grid; /* lets us center the square */
-  place-items: center; /* center the square on the screen */
-  background: rgba(0, 0, 0, .5); /* black at 50% see-through */
-}
-.sq { /* the white square popup */
-  position: relative; /* lets the X button be placed inside its corner */
-  width: min(84vw, 26rem); /* 84% of the screen width, at most 26rem */
-  aspect-ratio: 1; /* height equals width = a square */
-  background: var(--white); /* white square */
-  border: 2px solid var(--black); /* black outline */
-  display: grid; /* lets us center the text */
-  place-items: center; /* center the text in the square */
-  padding: 1.5rem; /* space inside */
-  text-align: center; /* center the text */
-  animation: pop .22s ease-out; /* play the "pop" animation when it opens */
-}
-.sq h4 { /* the skill name in the popup */
-  margin: 0; /* remove the default space */
-  font-size: 1.6rem; /* text size */
-}
-.x { /* the X close button */
-  position: absolute; /* place it freely inside the square */
-  top: .5rem; /* 0.5rem from the top edge */
-  right: .5rem; /* 0.5rem from the right edge */
-  width: 2.2rem; /* button width */
-  height: 2.2rem; /* button height */
-  border: 0; /* no border */
-  border-radius: .5rem; /* rounded corners */
-  background: var(--navy); /* dark blue */
-  color: var(--white); /* white X */
-  font: 700 1rem/1 inherit; /* bold, 1rem text */
-  cursor: pointer; /* hand cursor on hover */
-}
-@keyframes pop { /* the "pop" animation: start slightly small and see-through, end normal */
-  from { /* the start */
-    opacity: 0; /* invisible */
-    transform: scale(.92); /* 92% of normal size */
-  }
-  to { /* the end */
-    opacity: 1; /* fully visible */
-    transform: none; /* normal size */
-  }
 }
 
 /* ---------- About me page is 10% smaller on a computer ---------- */
@@ -544,9 +482,7 @@ html[lang=en] .ptitle h2 { /* only in English */
   font-weight: 400; /* normal letters */
   line-height: 1.1; /* line height */
 }
-html[lang=en] .hero small, html[lang=en] .hero b { /* only in English */
-  font-style: italic; /* slanted letters like your design */
-}
+
 .hero p { /* the description */
   margin: 1.5rem 0 0 2.9rem; /* space around it: top, right, bottom, left (indented) */
   font-size: 1.5rem; /* text size */
@@ -575,9 +511,6 @@ html[lang=en] .hero small, html[lang=en] .hero b { /* only in English */
   margin-top: .8rem; /* space above the caption */
   font-size: 1.5rem; /* text size (same as the About me text) */
   line-height: 1.3; /* line height */
-}
-html[lang=en] .card span { /* only in English */
-  font-style: italic; /* slanted letters like your design */
 }
 
 /* Projects pages are 10% smaller on a computer  */
@@ -621,4 +554,108 @@ html[lang=en] .card span { /* only in English */
   .cards { /* the cards grid */
     grid-template-columns: 1fr; /* one card per row */
   }
+}
+
+
+/* ---------- 20% opa picture on the page 2 panels ---------- */
+.panel::before { /* a layer under the text that holds the picture */
+  content: ""; /* a pseudo element needs content to appear */
+  position: absolute; /* lay it over the whole panel */
+  inset: 0; /* stick to all 4 edges */
+  background: var(--img, none) center/cover; /* use the picture from --img (set in the HTML), cover the panel */
+  opacity: .2; /* 20% visible */
+}
+
+/* ---------- Home page opening animation ---------- */
+#home { /* the home page box */
+  overflow: hidden; /* cut what slides off screen so no scrollbar appears */
+}
+.intro img, .who { /* the picture and the name box */
+  transition: transform .7s ease-in; /* slide for 0.7 seconds (must match the 700 in the JS) */
+}
+#home.opening .intro img { /* while the class "opening" is on: the picture... */
+  transform: translateX(-100vw); /* ...slides off to the left */
+}
+#home.opening .who { /* ...and the name box... */
+  transform: translateX(100vw); /* ...slides off to the right */
+}
+#home.opening .btn { /* the "View more" button */
+  visibility: hidden; /* disappears at once (still takes space, so nothing jumps) */
+}
+
+/* ---------- Zoom page 2 before going to the next page ---------- */
+#portfolio { /* page 2 */
+  transition: transform .6s ease-in, opacity .6s ease-in; /* zoom and fade together for 0.6 seconds */
+}
+#portfolio.zooming { /* while the class "zooming" is on */
+  transform: scale(1.6); /* enlarge the whole page 1.6 times = zoom in */
+  opacity: 0; /* fade out */
+}
+
+/* ---------- About me: the one-line additional skills ---------- */
+.skillline { /* the skills line */
+  margin: 0; /* no extra space */
+  font-size: 1.4rem; /* same size as the other About me text */
+}
+
+/* ---------- Robot Bartender arrow button ---------- */
+.herowrap { /* wrapper around the banner */
+  position: relative; /* reference point for placing the button inside it */
+}
+.dl { /* the arrow button */
+  position: absolute; /* place it freely inside the wrapper */
+  right: 1.8rem; /* distance from the right edge */
+  bottom: 1.6rem; /* distance from the bottom edge */
+  width: 3.4rem; /* button width */
+  height: 3.4rem; /* button height */
+  padding: 0; /* no inner space */
+  border: 0; /* no border */
+  background: none; /* no background (the icon picture is enough) */
+  cursor: pointer; /* hand cursor */
+  animation: bounce 1.2s ease-in-out infinite; /* bounce up and down forever */
+}
+.dl img { /* the icon inside the button */
+  display: block; /* remove the small gap under images */
+  width: 100%; /* fill the button */
+  height: 100%; /* fill the button */
+}
+@keyframes bounce { /* the bounce motion */
+  0%, 100% { transform: translateY(-.3rem); } /* start and end: a little up */
+  50% { transform: translateY(.3rem); } /* middle: a little down */
+}
+
+/* ---------- Portfolio Website bar ---------- */
+.webbar { /* the long bar at the bottom */
+  display: flex; /* text and logo in one row */
+  justify-content: center; /* centered horizontally */
+  align-items: center; /* centered vertically */
+  gap: 1rem; /* space between text and logo */
+  margin: 0 0 2rem; /* a little space below */
+  padding: .9rem 1rem; /* space inside the bar */
+  background: #282828; /* dark gray */
+  color: #bdbdbd; /* light gray text */
+  text-decoration: none; /* remove the link underline */
+  font-size: 2.6rem; /* text size */
+  transition: transform .4s ease; /* smooth enlarging */
+}
+.webbar img { /* the GitHub logo */
+  display: block; /* remove the small gap under images */
+  height: 7rem; /* the picture has a lot of empty space around the logo, so it is big and pulled back with negative margins */
+  width: auto; /* keep the shape */
+  margin: -2.4rem 0 -2rem; /* pull the empty top/bottom back so the bar does not get tall (adjust to taste) */
+}
+.webbar:hover, .webbar:focus-visible { /* when the mouse (or keyboard) is on the bar */
+  transform: scale(1.04); /* a little bigger */
+  animation: blink 2s ease-in-out infinite; /* slow blink, one round every 2 seconds */
+}
+@keyframes blink { /* the blink motion */
+  0%, 100% { opacity: 1; } /* start and end: normal */
+  50% { opacity: .45; } /* middle: faded */
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 960px) { /* small screens only */
+  .webbar { font-size: 1.8rem; } /* smaller bar text */
+  .webbar img { height: 5rem; margin: -1.6rem 0 -1.4rem; } /* smaller logo */
+  .dl { width: 2.6rem; height: 2.6rem; right: 1rem; bottom: 1rem; } /* smaller arrow button */
 }

@@ -46,25 +46,6 @@ document.querySelectorAll(".meter").forEach(function (m) { // for every skill ba
   m.innerHTML = h; // put boxes inside bar
 }); 
 
-// ---------- Popup ----------
-function closeModal() { // closes  popup function
-  $("#modal").hidden = true; 
-} 
-document.querySelectorAll(".skill").forEach(function (b) { // button for every additional kills
-  b.addEventListener("click", function () { 
-    $("#mt").textContent = b.textContent; 
-    $("#modal").hidden = false; 
-    $("#xBtn").focus(); 
-  }); 
-}); 
-$("#xBtn").addEventListener("click", closeModal); // clicking the X button closes the popup
-$("#modal").addEventListener("click", function (e) { // clicking anywhere on the dark area
-  if (e.target === this) closeModal(); 
-}); 
-document.addEventListener("keydown", function (e) { // when any key is pressed
-  if (e.key === "Escape") closeModal(); //  Esc key = close the popup
-}); 
-
 // ---------- Email button + closing the popup when the page changes ----------
 var emailBtn = $("#emailBtn");               // find the email button
 function resetEmail() {                      // put the button back to "email"
@@ -80,7 +61,6 @@ function updateAboutExtras() { // a function for things that depend on the curre
   var p = location.hash.replace("#/", ""); // read the current page name from the address
   $("#emailBtn").hidden = p !== "about"; // show the email button only on the About me page
   resetEmail();   // always go back to "email" when the page changes
-  closeModal(); // close the popup whenever the page changes
 } // end of updateAboutExtras
 window.addEventListener("hashchange", updateAboutExtras); // run it every time the address changes
 updateAboutExtras(); // run it once now, for the page that is open at the start
@@ -96,22 +76,55 @@ var PICS = { // the picture file for each project (name on the left, file on the
   micro: "Pictures/Microbit.jpg", // micro:bit project
   site: "Pictures/PortfolioWebsite.jpg" // this portfolio website
 }; 
-// Each card is: [Thai caption, English caption, picture name, true = show the whole picture on white]
-var CARDS = [ // the list of project cards
-  ["โปรเจกต์พัฒนาเกมบนแพลตฟอร์ม Roblox", "Roblox Game", "obby"], // card 1: picture fills the frame
-  ["เกมเสริมการเรียนรู้คณิตศาสตร์", "Math Game", "math"], // card 2
-  ["โปรเจกต์เกมจากโปรแกรม Scratch", "Scratch Game", "scratch"], // card 3
-  ["โปรเจกต์จากไมโครบิต", "Project From Microbit", "micro", true], // card 4: whole picture on white
-  ["เว็บไซต์พอร์ตโฟลิโอ", "Portfolio Website", "site", true] // card 5: whole picture on white
-]; // end of the list
+// cards below
+var CARDS = [ // the list of cards, in the order they are shown
+  ["โปรเจกต์เกมจากโปรแกรม Scratch", "Scratch Game", "scratch", "#/scratch"], 
+  ["เกมเสริมการเรียนรู้คณิตศาสตร์", "Math Game", "math", "#/math"], 
+  ["โปรเจกต์พัฒนาเกมบนแพลตฟอร์ม Roblox", "Roblox Game", "obby", "#/roblox"] 
+];
 
-$("#cards").innerHTML = CARDS.map(function (c) { // turn every card in the list into HTML text...
-  return '<a class="card" href="#/project">' + // ...a link; clicking opens the blank project page
-    '<span class="frame' + (c[3] ? ' w' : '') + '">' + // ...the picture frame (adds class "w" for white background when c[3] is true)
-    '<img class="bg' + (c[3] ? ' fit' : '') + '" src="' + PICS[c[2]] + '" alt=""></span>' + // ...the picture (class "fit" = show it whole)
+$("#cards").innerHTML = CARDS.map(function (c) { // turn every card into HTML text
+  return '<a class="card" href="' + c[3] + '">' + 
+    '<span class="frame"><img class="bg" src="' + PICS[c[2]] + '" alt=""></span>' + 
     '<span data-th="' + c[0] + '" data-en="' + c[1] + '"></span>' + 
-    '</a>'; // ...end of the link
-}).join(""); // glue all cards together and put them inside the #cards box
+    '</a>'; 
+}).join("");
 
 setLang(lang); // run the language again so the new captions get their Thai / English text
 route(); // run route() again so that opening ...#/projects directly also works
+
+/ ---------- Home page when click View more ---------- /
+var homeEl = $("#home"); 
+$(".btn").addEventListener("click", function (e) { // when "View more" is clicked
+  e.preventDefault(); // stop the instant jump
+  if (homeEl.classList.contains("opening")) return; // already animating? ignore extra clicks
+  homeEl.classList.add("opening"); // add class "opening" hides the button, picture goes left, name goes right
+  setTimeout(function () { // wait until the slide has finished
+    location.hash = "#/portfolio"; // then go to page 2
+  }, 700); // 7s 
+}); 
+
+// ---------- zoom when About me / Projects is clicked ----------
+document.querySelectorAll("#portfolio .panel").forEach(function (a) { // for every panel on page 2
+  a.addEventListener("click", function (e) { // when that panel is clicked
+    e.preventDefault(); // cancel the instant jump
+    var pf = $("#portfolio"); 
+    if (pf.classList.contains("zooming")) return; // already zooming? ignore extra clicks
+    var target = a.getAttribute("href"); // remember where this panel goes
+    pf.classList.add("zooming"); // add class "zooming": CSS zooms in and fades out
+    setTimeout(function () { // wait until the zoom has finished
+      location.hash = target; // then go to the target page
+    }, 600); //6s 
+  }); 
+}); 
+
+// ---------- Clean the animations every time the page changes  ----------
+window.addEventListener("hashchange", function () { // when the address changes
+  homeEl.classList.remove("opening"); // take the home animation class off
+  $("#portfolio").classList.remove("zooming"); // take the zoom class off page 2
+});
+
+// ---------- Arrow button,  scroll to bottom ----------
+$("#dlBtn").addEventListener("click", function () { // when the arrow button is clicked
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" }); // scroll smoothly to the end of the page
+});
