@@ -128,3 +128,6 @@ window.addEventListener("hashchange", function () { // when the address changes
 $("#dlBtn").addEventListener("click", function () { // when the arrow button is clicked
   window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" }); // scroll smoothly to the end of the page
 });
+
+PAGES.push("scratch", "math", "roblox", "web"); // the 4 new pages (names match the ids in the HTML and the hashes like #/scratch)
+route();

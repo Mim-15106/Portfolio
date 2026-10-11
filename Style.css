@@ -659,3 +659,107 @@ s { /* the Additional Skills group */
   .webbar img { height: 5rem; margin: -1.6rem 0 -1.4rem; } /* smaller logo */
   .dl { width: 2.6rem; height: 2.6rem; right: 1rem; bottom: 1rem; } /* smaller arrow button */
 }
+
+/* ---------- Each Project pages  ---------- */
+.pbody { /* the content box of every project page */
+  padding: .5rem 4% 4rem; /* space inside: top, left/right 4%, bottom */
+}
+.pbody img { /* every picture in the content */
+  display: block; /* remove the small gap under images */
+  width: 100%; /* fill its cell */
+  aspect-ratio: var(--r, 4/3); /* shape (width:height) from --r set in the HTML (default 4:3) */
+  object-fit: cover; /* the real picture will fill the cell and be cropped to fit */
+}
+.shots { /* a row of pictures */
+  display: grid; /* use a grid */
+  gap: var(--g, 2rem); /* space between pictures (set --g in the HTML to change it) */
+}
+.shots.c2 { /* a row of 2 */
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  gap: 4rem; /* wider gap like the design */
+}
+.shots.c3 { /* a row of 3 */
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+}
+.ptext { /* a text paragraph */
+  margin: 1.6rem 1.5rem; /* space around it (slightly inside the picture edges, like the design) */
+  font-size: 1.2rem; /* text size */
+  line-height: 1.7; /* space between lines */
+}
+.pmix { /* a row of picture + text */
+  display: grid; /* use a grid */
+  grid-template-columns: var(--cols, 1fr 1fr); /* two columns, ratio set in the HTML */
+  gap: 2.5rem; /* space between the two columns */
+  align-items: start; /* both aligned to the top */
+  margin-top: 2rem; /* space above the row */
+}
+.side .ptext { /* text inside a side column */
+  margin: 0; /* touch the column edge, no extra space */
+}
+.models { /* the 2 model pictures (Roblox page) */
+  display: grid; /* use a grid */
+  grid-template-columns: 1fr 1fr; /* 2 equal columns */
+  gap: .8rem; /* small gap */
+  margin-top: 1.2rem; /* space above, away from the text */
+}
+.models figure { /* picture + caption */
+  margin: 0; /* remove the default figure space */
+}
+.models figcaption { /* the caption under a picture */
+  margin-top: .4rem; /* space above the caption */
+  text-align: center; /* centered */
+  font-size: .95rem; /* small text like the design */
+}
+.gobtn { /* the black button with the click icon */
+  display: inline-flex; /* text and icon in one row */
+  align-items: center; /* centered vertically */
+  gap: .6rem; /* space between text and icon */
+  margin: 2.5rem 0 0 2.5rem; /* space above and on the left */
+  padding: .75rem 1.8rem; /* space inside the button */
+  border-radius: 1.2rem; /* rounded corners */
+  background: #282828; /* almost black */
+  color: var(--white); /* white text */
+  text-decoration: none; /* remove the link underline */
+  font-size: 1.9rem; /* text size */
+  line-height: 1.1; /* line height */
+  transition: transform .25s ease; /* smooth enlarging */
+}
+.gobtn:hover, .gobtn:focus-visible { /* when the mouse (or keyboard) is on the button */
+  transform: scale(1.08); /* a little bigger */
+}
+.pbody .gobtn img { /* the icon in the button (more specific than ".pbody img") */
+  width: auto; /* width follows the picture shape */
+  height: 2.4rem; /* icon height */
+  aspect-ratio: auto; /* cancel the shape set by ".pbody img" */
+}
+.gobtn.lg { /* the big button (Website page) */
+  font-size: 3.2rem; /* bigger text */
+  padding: .9rem 3rem; /* wider button */
+}
+.center { /* a box that centers everything (Website page) */
+  text-align: center; /* text and button in the middle */
+}
+.center .gobtn { /* the button inside the centered box */
+  margin: 3rem 0 0; /* no left space */
+}
+
+/* ---------- Project pages are 10% smaller on a computer (same as the other pages) ---------- */
+@media (min-width: 961px) { /* wide screens only */
+  #scratch, #math, #roblox, #web { /* the 4 pages */
+    zoom: .9; /* shrink to 90% */
+  }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 960px) { /* small screens only */
+  .shots.c2, .shots.c3, .pmix { /* multi-column rows */
+    grid-template-columns: 1fr; /* stack one under another */
+  }
+  .gobtn { /* the button */
+    margin-left: 0; /* align left */
+    font-size: 1.4rem; /* smaller */
+  }
+  .gobtn.lg { /* the big button */
+    font-size: 2rem; /* smaller but still big */
+  }
+}
