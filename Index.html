@@ -101,9 +101,58 @@
     </a>
 </main> 
 
-<!-- blank page (of each projects) ========== -->
-<main class="page" id="project" hidden> 
-  <div class="ptitle"><a class="back" href="#/projects" aria-label="Back">&lt;</a></div> <!-- only a "<" button, which goes back to the Projects page -->
+<main class="page" id="project" hidden>
+  <div class="ptitle"> 
+    <a class="back" href="#/projects" aria-label="Back">&lt;</a> 
+    <h2>Robot Bartender</h2> 
+    <span class="plogo"><img src="Pictures/RobotBartenderIcon.png" alt=""></span>
+  </div>
+  <div class="pbody"> 
+
+    <div class="pmix indent" style="--cols:.72fr 1fr"> 
+      <img class="shot" src="Pictures/Machine.jpg" alt="" style="--r:.67/1"> <!-- photo of the machine screen (replace wait.png later) -->
+      <div class="side"> 
+        <p class="ptext" data-th="บาร์เทนเดอร์ (Bartender) คือ ผู้เชี่ยวชาญในการผสมเครื่องดื่มทั้งแบบที่มีแอลกอฮอล์และไม่มีแอลกอฮอล์ โดยทั่วไปจะทำงานในบาร์ ร้านอาหาร หรือสถานบันเทิง ซึ่งหน้าที่หลักของบาร์เทนเดอร์นั้นนอกจากต้องผสมเครื่องดื่มแล้วยังต้องดูแลลูกค้าและความเรียบร้อยของร้านด้วย จากที่กล่าวไปบาร์เทนเดอร์ต้องทำงานหลายส่วนพร้อมกัน ดังนั้นนวัตกรรมนี้จึงตอบโจทย์การแก้ปัญหา โดยนวัตกรรมนี้จะช่วยแบ่งเบาภาระงานของบาร์เทนเดอร์ เนื่องจากสามารถทำเครื่องดื่มได้ในเวลาไม่นานและมีเมนูที่หลากหลาย อีกทั้งลูกค้ายังสามารถจ่ายเงินได้แบบออนไลน์ซึ่งทั้งสะดวกและรวดเร็ว" data-en="Bartender is a professional who makes drinks, both with and without alcohol, usually working in bars or restaurants. Besides mixing drinks, bartenders also have to take care of customers and keep the place running smoothly. Because they have to do many things at once, this project helps solve that problem by making drinks quickly with many menu options, and customers can pay online easily and fast."></p> 
+      </div>
+    </div>
+
+    <div class="pmix" style="--cols:1fr 1fr"> 
+      <div class="side"> <!-- left column -->
+        <p class="ptext" data-th="โครงงานชิ้นนี้ได้รับการออกแบบเพื่อให้สามารถผลิตเครื่องดื่มตามการตั้งค่าที่กำหนดไว้ และสามารถกำหนดส่วนผสมเครื่องดื่มได้ตามผู้ใช้ต้องการ และมีหน้าจอแสดงผลที่สวยงามเพื่อเพิ่มความน่าสนใจในการใช้ โดยนวัตกรรมนี้สามารถผลิตเครื่องดื่มได้หนึ่งแก้วภายในสามนาทีหลังจากการจ่ายเงิน ทั้งนี้เครื่องนี้รองรับการชำระเงินเฉพาะทางออนไลน์เท่านั้น" data-en="This project is designed to make drinks based on set recipes or custom choices made by the user, with an attractive screen to catch people's attention. The machine can make one cup of drink within three minutes after payment and it only accepts online payments."></p> 
+      </div>
+      <img class="shot" src="Pictures/Boots.jpg" alt="" style="--r:1.76/1"> <!-- photo of people at the booth -->
+    </div>
+
+    <div class="pmix" style="--cols:.9fr 1.2fr"> <!-- row 3: cup photo + caption on the left, two paragraphs on the right -->
+      <figure class="fig"> <!-- photo + caption -->
+        <img src="Pictures/Drink.jpg" alt="" style="--r:.93/1"> <!-- photo of the drink -->
+        <figcaption class="cap" data-th="ภาพเพื่อการตกแต่ง ตัวเครื่องจริงมีข้อจำกัด สามารถทำได้เพียงเครื่องดื่ม ไม่สามารถใส่หลอดและฝาครอบแก้วดังภาพได้" data-en="The image is for decoration only. The actual machine has limitations and can only make drinks, it cannot add straws or lids as shown in the picture."></figcaption> <!-- small caption under the photo -->
+      </figure>
+      <div class="side"> <!-- right column -->
+        <p class="ptext" data-th="นวัตกรรมชิ้นนี้ ใช้ภาษา Java ในการเขียนระบบหลัก ผสมกับภาษา Python ที่นำมาเป็นตัวช่วยในการสั่งการการทำงานของเครื่อง โดยมีระบบการทำงานหลักคือใช้ภาษา Java ในการทำงานของหน้าจอ บริหารจัดการหน้าจอประมวลผล , รับค่าการกดเลือก คำนวณปริมาณสัดส่วนเครื่องดื่ม และการสั่งการไปยังไมโครคอนโทรลเลอร์ รวมถึงการสั่งการไปยัง Python เพื่อให้ Python ควบคุมการทำงานของรีเลย์เพื่อควบคุมปริมาณการปล่อยน้ำเชื่อมและโซดาที่ใช้ในการทำเครื่องดื่มแต่ละแก้ว" data-en="This project uses Java for the main system and Python to help control the machine. Java handles the screen display, processes user choices, calculates drink portions, and sends commands to the microcontroller and Python. Then, Python controls the relays to release the right amount of syrup and soda for each drink."></p> <!-- paragraph 3 -->
+        <p class="ptext" data-th="ในส่วนของโครงสร้างภายนอก เครื่องนี้ใช้อลูมิเนียมโปรไฟล์และแผ่นอะคริลิกทึบในการขึ้นโครง ส่วนล่างของเครื่องใช้เก็บคอมพิวเตอร์ที่ใช้ในการประมวลผล ส่วนบนสุดเป็นพื้นที่เก็บน้ำเชื่อมและโซดา และตรงกลางด้านบนเป็นวงจรที่มีตัวหลักคือรีเลย์และโซลินอยด์สำหรับควบคุมปริมาณการปล่อยน้ำเชื่อมและโซดาที่จะใช้ในเครื่องดื่มแต่ละแก้ว ซึ่งควบคุมโดยไมโครคอนโทรลเลอร์ และส่วนด้านหน้าสุดเป็นหน้าจอสัมผัสและแสดงผลสำหรับตอบโต้กับลูกค้า และยังมีช่องรับเครื่องดื่มที่ตรงกลางตัวเครื่อง" data-en="For the outside structure, the machine is built with aluminum profiles and solid acrylic sheets. The bottom part stores the computer, the top part holds the syrups and soda, and the middle area contains the circuit with relays and solenoids controlled by a microcontroller. The front has a touchscreen for customers to use, and there is a dispensing slot right in the middle."></p> <!-- paragraph 4 -->
+      </div>
+    </div>
+
+    <p class="ptext" data-th="จากการทำโครงงานชิ้นนี้ ได้เรียนรู้ทักษะการประสานงาน ทักษะด้านวิศวกรรม และทักษะการเขียนโปรแกรมที่สำคัญ ไม่ว่าจะเป็นการใช้ภาษา Java ร่วมกับ Python ในการควบคุมระบบฮาร์ดแวร์และซอฟต์แวร์, การออกแบบส่วนติดต่อผู้ใช้ (UI/UX) สำหรับหน้าจอสัมผัส, ตลอดจนกระบวนการออกแบบโครงสร้างทางวิศวกรรมและการประกอบวงจรไฟฟ้า เพื่อสร้างนวัตกรรมที่สามารถใช้งานได้จริงในชีวิตประจำวันเชิงธุรกิจ" data-en="Working on this project helped me learn coordination, engineering, and important programming skills, such as using Java and Python together to control hardware and software, designing touchscreen UI/UX, and building structures and electronic circuits to create a real-world innovation."></p> <!-- paragraph 5 (full width) -->
+
+    <div class="car" id="car" aria-label="Robot Bartender model"> <!-- the sliding model pictures: the middle one is big, the side ones are small -->
+      <div class="slide"><img src="Pictures/M1.jpg" alt="" style="--r:1.55/1"></div> <!-- model picture 1 (replace wait.png later) -->
+      <div class="slide"><img src="Pictures/M2.jpg" alt="" style="--r:1.55/1"></div> <!-- model picture 2 -->
+      <div class="slide"><img src="Pictures/M3.jpg" alt="" style="--r:1.55/1"></div> <!-- model picture 3 -->
+      <div class="slide"><img src="Pictures/M4.jpg" alt="" style="--r:1.55/1"></div> <!-- model picture 4 -->
+    </div>
+    <p class="cap" data-th="โมเดลตัวเครื่อง Robot Bartender" data-en="Robot Bartender Model"></p> <!-- caption under the sliding pictures -->
+
+    <div class="pmix mid" style="--cols:1.5fr 1fr"> <!-- last row: big GIF on the left, button on the right -->
+      <img class="shot" src="Pictures/StartPage.gif" alt="" style="--r:1.6/1"> <!-- the start screen of the simulated program -->
+      <div class="side ctr"> <!-- right column, centered -->
+        <a class="gobtn" href="#/sim">Robot Bartender<img src="Pictures/Click.png" alt=""></a> <!-- opens the full-screen simulation page (same page, not a new tab) -->
+        <p class="cap" data-th="ซอฟต์แวร์จำลองจาก Robot Bartender" data-en="Robot Bartender Interactive UI Prototype"></p> <!-- caption under the button -->
+      </div>
+    </div>
+
+  </div>
 </main>
 
 <!-- ========== Scratch Game page ========== -->
@@ -114,15 +163,15 @@
   </div>
   <div class="pbody"> <!-- the content box -->
     <div class="shots c3"> <!-- a row of 3 pictures -->
-      <img src="Pictures/wait.png" alt="" style="--r:4/3"> 
-      <img src="Pictures/wait.png" alt="" style="--r:4/3"> 
-      <img src="Pictures/wait.png" alt="" style="--r:4/3"> 
+      <img src="Pictures/Scratch1.png" alt="" style="--r:4/3"> 
+      <img src="Pictures/Scratch2.png" alt="" style="--r:4/3"> 
+      <img src="Pictures/Scratch3.png" alt="" style="--r:4/3"> 
     </div>
     <p class="ptext" data-th="เกมนี้เป็นเกมที่สร้างขึ้นโดยใช้โปรแกรม Scratch โดยมีวัตถุประสงค์เพื่อฝึกกระบวนการคิดเชิงตรรกะ (Computational Thinking) เรียนรู้หลักการทำงานพื้นฐานของการพัฒนาเกม ซึ่งถือเป็นโครงสร้างพื้นฐานสำคัญในการต่อยอดสู่การพัฒนาซอฟต์แวร์และเกมที่ซับซ้อนขึ้นในอนาคต โดยเกมนี้เป็นเกมสำหรับทุกวัย มีเนื้อหาหลักคือการปกป้องดอกไม้ ให้ผู้เล่นบริหารจัดการมานาและเวลาให้พอดี เพื่อกำจัดมอนสเตอร์ที่จะสุ่มเกิด เพื่อไม่ให้ดอกไม้ตาย เป็นการฝึกฝนทักษะการบริหารจัดการรูปแบบหนึ่ง" data-en="This game was created using Scratch to practice computational thinking and learn the basic principles of game development, serving as a foundation for building more complex games and software in the future. Suitable for players of all ages, the main goal is to protect a flower from randomly spawned monsters. Players must manage their mana and time efficiently to defeat the monsters before the flower dies, helping to practice real-world resource management skills."></p> 
     <div class="pmix" style="--cols:1.15fr 1fr"> <!-- bottom row: picture on the left, text on the right (column ratio 1.15 : 1) -->
-      <img class="shot" src="Pictures/wait.png" alt="" style="--r:1.9/1"> <!-- left picture, shape 1.9:1 -->
+      <img class="shot" src="Pictures/Scratch.png" alt="" style="--r:1.9/1"> <!-- left picture, shape 1.9:1 -->
       <div class="side"> <!-- right column -->
-        <p class="ptext" data-th="ในตอนนี้เกมนี้สามารถเข้าไปเล่นได้ในเว็บไซต์ของ Scratch โดยสามารถเล่นได้เฉพาะบนคอมพิวเตอร์เท่านั้น ซึ่งจะมีแนะนำวิธีการเล่นและปุ่มควบคุมต่าง ๆ ระบุไว้อย่างชัดเจน เพื่อให้ผู้เล่นสามารถเข้าใจระบบเกมและเล่นได้อย่างราบรื่น" data-en="Currently, this game is playable on the Scratch website for PC / Desktop only. You can find instructions and control guides to help players easily understand the gameplay and start playing right away."></p> <!-- text on the right -->
+        <p class="ptext" data-th="เกมนี้สามารถเข้าไปเล่นได้ในเว็บไซต์ของ Scratch สามารถเล่นได้เฉพาะบนคอมพิวเตอร์เท่านั้น โดยจะมีแนะนำวิธีการเล่นและปุ่มควบคุมต่าง ๆ ระบุไว้อย่างชัดเจน เพื่อให้ผู้เล่นสามารถเข้าใจระบบเกมและเล่นได้อย่างราบรื่น" data-en="Currently, this game is playable on the Scratch website for PC / Desktop only. You can find instructions and control guides to help players easily understand the gameplay and start playing right away."></p> <!-- text on the right -->
         <a class="gobtn" href="https://scratch.mit.edu/projects/1374349326/" target="_blank" rel="noopener">Flower Keeper<img src="Pictures/Click.png" alt=""></a> <!-- black button + click icon, opens the link in a new tab -->
       </div>
     </div>
@@ -138,18 +187,18 @@
   </div>
   <div class="pbody"> <!-- the content box -->
     <div class="shots c2"> <!-- a row of 2 pictures -->
-      <img src="Pictures/wait.png" alt="" style="--r:2/1"> <!-- left picture, shape 2:1 -->
-      <img src="Pictures/wait.png" alt="" style="--r:2/1"> <!-- right picture -->
+      <img src="Pictures/MathGame1.png" alt="" style="--r:2/1"> <!-- left picture, shape 2:1 -->
+      <img src="Pictures/MathGame2.png" alt="" style="--r:2/1"> <!-- right picture -->
     </div>
     <p class="ptext" data-th="เกมนี้เป็นเกมส่งเสริมการเรียนรู้ด้านคณิตศาสตร์ โดยมีเนื้อหาหลักสอนเกี่ยวกับคณิตศาสตร์ในบท 'สถิติศาสตร์' โดยผู้เล่นจะรับบทเป็นอัศวินและมีรูปแบบการเล่นแบบเกมแพลตฟอร์มทั่วไป โดดข้ามสิ่งกีดขวางและระวังตกจากขอบ แต่ที่แตกต่างจากเกมอื่น ๆ คือ ในเกมนี้ผู้เล่นมีหน้าที่ต้องต่อสู้กับมอนสเตอร์ โดยใช้ความรู้ทางคณิตศาสตร์ในการตอบคำถามเพื่อโจมตี" data-en="This is an educational game that promotes math learning. The main content teaches math in the 'Statistics' chapter. Players play as a knight in standard platformer gameplay, jumping over obstacles and being careful not to fall off the edges. But different from other games, players have to fight monsters by using math knowledge to answer questions to attack."></p> <!-- paragraph 1 -->
     <div class="shots c3" style="--g:.4rem"> <!-- a row of 3 pictures with a small gap (--g = gap) -->
-      <img src="Pictures/wait.png" alt="" style="--r:1.85/1"> 
-      <img src="Pictures/wait.png" alt="" style="--r:1.85/1"> 
-      <img src="Pictures/wait.png" alt="" style="--r:1.85/1"> 
+      <img src="Pictures/Spring.png" alt="" style="--r:1.85/1"> 
+      <img src="Pictures/Autumn.png" alt="" style="--r:1.85/1"> 
+      <img src="Pictures/Winter.png" alt="" style="--r:1.85/1"> 
     </div>
     <p class="ptext" data-th="ในเกมนี้ มีทั้งหมดสามด่าน ซึ่งแต่ละด่านก็จะมีฉากและพื้นหลังที่แตกต่างกัน มีมอนสเตอร์ที่แตกต่างกันไปหลากหลายรูปแบบ และมีชุดคำถามที่แตกต่างกัน โดยรูปแบบคำถามจะยากขึ้นตามระดับเพื่อเพิ่มความท้าทายให้ผู้เล่น และเพื่อช่วยให้ผู้เล่นจดจำเนื้อเรื่องสถิติศาสตร์ได้มากขึ้นผ่านการฝึกทำโจทย์" data-en="In this game, there are three stages in total. Each stage has different scenes and backgrounds, various types of different monsters, and different question sets. The question formats get harder according to the levels to increase the challenge for players and to help players remember the Statistics lesson more through practicing problems."></p> <!-- paragraph 2 -->
     <div class="pmix" style="--cols:.9fr 1fr"> <!-- bottom row: picture left, text right -->
-      <img class="shot" src="Pictures/wait.png" alt="" style="--r:1.66/1"> <!-- final stage picture -->
+      <img class="shot" src="Pictures/BossFight.png" alt="" style="--r:1.66/1"> <!-- final stage picture -->
       <div class="side"> <!-- right column -->
         <p class="ptext" data-th="เมื่อผู้เล่นเล่นผ่านครบทั้งสามด่าน ก็จะสามารถเข้าไปยังด่านสุดท้าย ในด่านนี้จะเป็นการสู้กับมอนสเตอร์ที่แข็งแกร่ง ผู้เล่นจะต้องตอบคำถามให้ครบตามจำนวนเพื่อชนะเกม โดยชุดคำถามในด่านนี้ จะเป็นชุดคำถามที่มีคำถามระดับสูงที่ยากกว่าคำถามอื่น ๆ รวมอยู่ด้วย" data-en="When players pass all three stages, they can go to the final stage. In this stage, It is a battle with a strong monster. Players must answer the questions completely to win the game. The question set in this stage includes high level questions that are harder than other questions."></p> <!-- paragraph 3 -->
         <a class="gobtn" href="https://gd.games/instant-builds/a2bfc202-268c-492b-9d3e-7e39f98f7945" target="_blank" rel="noopener">Math Game<img src="Pictures/Click.png" alt=""></a> <!-- button to play the game -->
@@ -167,16 +216,16 @@
   </div>
   <div class="pbody"> <!-- the content box -->
     <div class="pmix" style="--cols:.7fr 1fr"> <!-- top row: tall picture left, text + model pictures right -->
-      <img class="shot" src="Pictures/wait.png" alt="" style="--r:.9/1"> <!-- big left picture (almost square) -->
+      <img class="shot" src="Pictures/Obby.png" alt="" style="--r:.9/1"> <!-- big left picture (almost square) -->
       <div class="side"> <!-- right column -->
         <p class="ptext" data-th="เกมนี้คือเกมที่สร้างขึ้นภายใน Roblox Studio ซึ่งใช้ภาษา Luau ในการเขียนโค้ด โดยเกมนี้เป็นเกมแนว Obby ที่ให้ผู้เล่นกระโดดข้ามสิ่งกีดขวางและระวังการตกจากขอบ มีรูปแบบการเล่นที่เรียบง่ายแบ่งเป็นด่าน ๆ และมีดนตรีประกอบที่ฟังสนุกเพลิดเพลิน จากการสร้างเกมนี้ ได้เรียนรู้วิธีการปั้นโมเดลทั้งใน Roblox Studio และ Blender รวมถึงได้เรียนรู้การเขียนสคริปต์ควบคุมระบบการเล่นและการเชื่อมโยงอินเทอร์เฟซ (UX / UI)" data-en="This is an Obby style game created in Roblox Studio using Luau scripting. Players navigate through obstacle filled levels, jump across platforms, and avoid falling, all set to an engaging background soundtrack. Building this project provided hands on experience in 3D modeling using both Roblox Studio and Blender, as well as fundamental scripting for gameplay mechanics and UI implementation."></p> <!-- description -->
         <div class="models"> <!-- row of 2 model pictures -->
           <figure> <!-- house picture + caption -->
-            <img src="Pictures/wait.png" alt="" style="--r:1.58/1"> <!-- house picture -->
+            <img src="Pictures/House.jpg" alt="" style="--r:1.58/1"> <!-- house picture -->
             <figcaption data-th="โมเดลบ้านที่สร้างใน Roblox Studio" data-en="House model created in Roblox Studio"></figcaption> <!-- caption under the picture -->
           </figure>
           <figure> <!-- hat picture + caption -->
-            <img src="Pictures/wait.png" alt="" style="--r:1.58/1"> <!-- hat picture -->
+            <img src="Pictures/Hat.jpg" alt="" style="--r:1.58/1"> <!-- hat picture -->
             <figcaption data-th="โมเดลหมวกที่สร้างภายใน Blender" data-en="Hat model created in Blender"></figcaption> <!-- caption under the picture -->
           </figure>
         </div>
@@ -187,7 +236,7 @@
         <p class="ptext" data-th="ในตอนนี้ สามารถเข้าไปเล่นเกมนี้ได้ผ่านทางแพลตฟอร์ม Roblox โดยค้นหาชื่อเกมเพื่อเข้าเล่นได้ทันที ทั้งบนคอมพิวเตอร์ และอุปกรณ์เคลื่อนที่" data-en="Currently, this game is playable on the Roblox platform. Players can search for the game and play it immediately on both PC and mobile devices."></p> <!-- text -->
         <a class="gobtn" href="https://www.roblox.com/games/122134803464677/Weird-Dream-Obby" target="_blank" rel="noopener">Weird Dream Obby<img src="Pictures/Click.png" alt=""></a> <!-- button to play the game -->
       </div>
-      <img class="shot" src="Pictures/wait.png" alt="" style="--r:1.43/1"> <!-- picture of the game page on Roblox -->
+      <img class="shot" src="Pictures/Roblox.jpg" alt="" style="--r:1.43/1"> <!-- picture of the game page on Roblox -->
     </div>
   </div>
 </main>
@@ -202,6 +251,23 @@
   <div class="pbody center"> <!-- the content box, everything centered -->
     <p class="ptext" data-th="เว็บไซต์นี้คือเว็บพอร์ตโฟลิโอส่วนตัว ที่พัฒนาขึ้นด้วยภาษา HTML, CSS และ JavaScript เพื่อรวบรวมและนำเสนอผลงาน รวมถึงเพื่อแสดงทักษะด้านเทคโนโลยี โดยได้บริหารจัดการและจัดเก็บซอร์สโค้ดไว้บนเว็บ GitHub เพื่อให้สามารถเข้าถึงขั้นตอนการสร้างและขั้นตอนการทำที่เป็นระบบ พร้อมทั้งติดตั้งระบบให้ออนไลน์เพื่อให้สามารถเข้าชมเว็บไซต์ได้ทันที" data-en="This is my personal portfolio website, built from scratch using HTML, CSS, and JavaScript to showcase my projects and technical skills. The source code is hosted on GitHub, with a live demo link available for viewers to explore the website online."></p> <!-- description -->
     <a class="gobtn lg" href="https://wait" target="_blank" rel="noopener">View on Github<img src="Pictures/Click.png" alt=""></a> <!-- ❗ Don't forgot to change link -->
+  </div>
+</main>
+
+<!-- ========== Big picture popup for the model pictures ========== -->
+<div class="lb" id="lb" hidden> <!-- the dark screen behind the big picture -->
+  <button class="lbx" id="lbX" type="button" aria-label="Close">X</button> <!-- close button -->
+  <button class="lbn lbp" id="lbPrev" type="button" aria-label="Previous">&lt;</button> <!-- previous picture -->
+  <img class="lbimg" id="lbImg" alt=""> <!-- the big picture -->
+  <button class="lbn lbq" id="lbNext" type="button" aria-label="Next">&gt;</button> <!-- next picture -->
+</div>
+
+<!-- ========== Simulation page: fake machine program, full screen ========== -->
+<main class="page" id="sim" hidden> <!-- full-screen page (it covers the top bar) -->
+  <a class="back simback" id="simBack" href="#/project" aria-label="Back">&lt;</a> <!-- "<" button, only visible on the Start Page (JS hides it on other screens) -->
+  <div class="simbox"> <!-- box with the same 16:10 shape as the screen pictures -->
+    <img class="simimg" id="simImg" src="Pictures/StartPage.gif" alt=""> <!-- the current screen picture (JS swaps it) -->
+    <div id="simHot"></div> <!-- JS puts the invisible buttons here -->
   </div>
 </main>
 

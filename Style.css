@@ -681,18 +681,6 @@ s { /* the Additional Skills group */
 .shots.c3 { /* a row of 3 */
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
 }
-.ptext { /* a text paragraph */
-  margin: 1.6rem 1.5rem; /* space around it (slightly inside the picture edges, like the design) */
-  font-size: 1.2rem; /* text size */
-  line-height: 1.7; /* space between lines */
-}
-.pmix { /* a row of picture + text */
-  display: grid; /* use a grid */
-  grid-template-columns: var(--cols, 1fr 1fr); /* two columns, ratio set in the HTML */
-  gap: 2.5rem; /* space between the two columns */
-  align-items: start; /* both aligned to the top */
-  margin-top: 2rem; /* space above the row */
-}
 .side .ptext { /* text inside a side column */
   margin: 0; /* touch the column edge, no extra space */
 }
@@ -762,4 +750,200 @@ s { /* the Additional Skills group */
   .gobtn.lg { /* the big button */
     font-size: 2rem; /* smaller but still big */
   }
+}
+
+/* ---------- Bigger text and more space between groups (all project pages) ---------- */
+.ptext { /* a text paragraph */
+  margin: 2rem 1.5rem 0; /* space above only (the next group adds its own space) */
+  font-size: 1.5rem; /* bigger text (same size as the About me text) */
+  line-height: 1.7; /* space between lines */
+}
+.pmix { /* a row of picture + text */
+  display: grid; /* use a grid */
+  grid-template-columns: var(--cols, 1fr 1fr); /* two columns, ratio set in the HTML */
+  gap: 3rem; /* space between the two columns */
+  align-items: start; /* both aligned to the top */
+  margin-top: 5rem; /* much more space above every group */
+}
+.pbody > .shots { /* a row of pictures right inside the content box */
+  margin-top: 5rem; /* more space above it */
+}
+.pbody > :first-child { /* the very first group on the page */
+  margin-top: 0; /* no extra space at the top */
+}
+.side .ptext + .ptext { /* the second paragraph inside one column */
+  margin-top: 2rem; /* space between the two paragraphs */
+}
+
+/* ---------- Robot Bartender page ---------- */
+.plogo { /* the round logo next to the title */
+  position: relative; /* lets the picture be placed inside */
+  flex: none; /* do not let the row squeeze it */
+  width: 6rem; /* circle size */
+  height: 6rem; /* circle size */
+  border: .12rem solid var(--black); /* thin black ring */
+  border-radius: 50%; /* make it round */
+  overflow: hidden; /* cut the picture at the circle */
+}
+.plogo img { /* the logo picture (the file has a lot of white space, so it is enlarged and moved to the middle) */
+  position: absolute; /* place it freely in the circle */
+  width: 302%; /* enlarge so the logo fills the circle (if your file is already cropped, use width:100%; left:0; top:0) */
+  left: -100%; /* move left so the logo is centered */
+  top: -54%; /* move up so the logo is centered */
+  max-width: none; /* allow it to be bigger than the circle */
+}
+.indent { /* a row with extra side space (row 1) */
+  padding: 0 7%; /* space on the left and right */
+}
+.fig { /* picture + caption block */
+  margin: 0; /* remove the default figure space */
+}
+.cap { /* small caption text */
+  margin: .7rem 0 0; /* space above */
+  text-align: center; /* centered */
+  font-size: 1.05rem; /* small text */
+  line-height: 1.4; /* line height */
+}
+.pmix.mid { /* a row whose two columns are centered vertically */
+  align-items: center; /* center vertically */
+}
+.ctr { /* a column with centered content */
+  text-align: center; /* center text */
+}
+.ctr .gobtn { /* the button inside a centered column */
+  margin: 0; /* no extra space around it */
+}
+
+/* ---------- Sliding model pictures ---------- */
+.car { /* the stage of the sliding pictures */
+  position: relative; /* the slides are placed inside it */
+  aspect-ratio: 3.1/1; /* shape of the stage: the big middle picture exactly fits its height */
+  margin-top: 3rem; /* space above */
+  overflow: hidden; /* cut the side pictures at the edges (like the design) */
+}
+.car .slide { /* one picture */
+  position: absolute; /* all pictures sit on the same spot, then move with transform */
+  top: 0; /* stick to the top */
+  left: 25%; /* start at the middle */
+  width: 50%; /* half of the stage */
+  cursor: zoom-in; /* magnifier cursor: click opens the big picture */
+  opacity: 0; /* hidden by default */
+  transform: scale(.5); /* small when hidden */
+  transition: transform .7s ease, opacity .7s ease; /* smooth sliding */
+}
+.car .slide.c { /* the picture in the middle */
+  opacity: 1; /* visible */
+  transform: none; /* full size */
+  z-index: 3; /* on top */
+}
+.car .slide.l { /* the picture on the left */
+  opacity: 1; /* visible */
+  transform: translateX(-88%) scale(.72); /* moved left, smaller, partly cut by the edge */
+  z-index: 2; /* under the middle one */
+}
+.car .slide.r { /* the picture on the right */
+  opacity: 1; /* visible */
+  transform: translateX(88%) scale(.72); /* moved right, smaller, partly cut by the edge */
+  z-index: 2; /* under the middle one */
+}
+
+/* ---------- Big picture popup ---------- */
+.lb { /* the dark screen behind the big picture */
+  position: fixed; /* stays on screen */
+  inset: 0; /* cover the whole screen */
+  z-index: 40; /* above everything */
+  display: grid; /* lets us center the picture */
+  place-items: center; /* center the picture */
+  background: rgba(0, 0, 0, .82); /* black, 82% see-through */
+}
+.lbimg { /* the big picture */
+  display: block; /* remove the small gap under images */
+  max-width: 80vw; /* never wider than 80% of the screen */
+  max-height: 80vh; /* never taller than 80% of the screen */
+  object-fit: contain; /* show the whole picture */
+}
+.lbx, .lbn { /* the close button and the arrow buttons */
+  position: absolute; /* place them freely on the screen */
+  display: grid; /* lets us center the symbol */
+  place-items: center; /* center the symbol */
+  width: 4rem; /* button size */
+  height: 4rem; /* button size */
+  border: 0; /* no border */
+  border-radius: 50%; /* round */
+  background: var(--navy); /* dark blue */
+  color: var(--white); /* white symbol */
+  font: 700 1.8rem/1 inherit; /* bold symbol */
+  cursor: pointer; /* hand cursor */
+}
+.lbx { /* the close button */
+  top: 2rem; /* from the top */
+  right: 2rem; /* from the right */
+}
+.lbn { /* the arrow buttons (both) */
+  top: 50%; /* middle of the screen height */
+  margin-top: -2rem; /* half of the button height, to really center it */
+}
+.lbp { /* the left arrow */
+  left: 2rem; /* from the left */
+}
+.lbq { /* the right arrow */
+  right: 2rem; /* from the right */
+}
+
+/* ---------- Simulation page (fake machine program) ---------- */
+html.sim, html.sim body { /* while the simulation page is open */
+  overflow: hidden; /* no scrolling behind it */
+}
+html.sim .bar { /* the top bar */
+  display: none; /* disappears on the simulation page */
+}
+#sim { /* the simulation page */
+  position: fixed; /* full screen */
+  inset: 0; /* cover the whole screen */
+  z-index: 20; /* above the other pages */
+  min-height: 0; /* cancel the normal page height */
+  display: grid; /* lets us center the screen box */
+  place-items: center; /* center the screen box */
+  background: var(--navy); /* dark blue bars if the window is not 16:10 */
+}
+.simbox { /* the box with the same shape as the screen pictures */
+  --u: calc(min(100vw, 160vh) / 1280); /* 1 "unit" = 1 pixel of the 1280px wide picture, scaled to the screen */
+  position: relative; /* invisible buttons are placed inside it */
+  width: min(100vw, 160vh); /* as wide as possible but never taller than the window (16:10) */
+  aspect-ratio: 16/10; /* the shape of the pictures */
+}
+.simimg { /* the screen picture */
+  display: block; /* remove the small gap under images */
+  width: 100%; /* fill the box */
+  height: 100%; /* fill the box */
+}
+#simHot { /* the layer holding the invisible buttons */
+  position: absolute; /* cover the picture */
+  inset: 0; /* all 4 edges */
+}
+.hs { /* one invisible button */
+  position: absolute; /* placed with left/top/width/height in % (set by JS) */
+  padding: 0; /* no inner space */
+  background: none; /* invisible */
+  border: calc(var(--u) * 5) solid transparent; /* an invisible frame; it turns green when the item is selected */
+  border-radius: calc(var(--u) * 14); /* rounded frame corners */
+  cursor: pointer; /* hand cursor */
+}
+.hs.on { /* a selected item */
+  border-color: #2ecc71; /* green frame around the item */
+}
+.hs.full { /* the invisible button that covers the whole page (Start Page) */
+  position: fixed; /* cover the whole window, not only the picture */
+  inset: 0; /* all 4 edges */
+  width: 100%; /* full width */
+  height: 100%; /* full height */
+  border: 0; /* no frame */
+  border-radius: 0; /* no rounded corners */
+}
+.simback { /* the "<" back button on the Start Page */
+  position: fixed; /* stays in the corner of the window */
+  top: 1.2rem; /* from the top */
+  left: 1.2rem; /* from the left */
+  z-index: 30; /* above the invisible buttons (so it is clickable) */
+  border: 2px solid var(--white); /* white outline so it can be seen on the dark bars */
 }
