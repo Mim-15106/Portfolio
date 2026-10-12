@@ -283,12 +283,6 @@ var simImg = $("#simImg"); // the screen picture element
 var simHot = $("#simHot"); // the layer for the invisible buttons
 var simBack = $("#simBack"); // the "<" button of the website
 
-simBack.addEventListener("click", function (e) { // when the website's "<" button is pressed
-  if (st.screen !== "start") { // on any screen except the Start Page...
-    e.preventDefault(); // ...do not leave the simulation...
-    simClick({ act: "back" }); // ...just go back one screen
-  } // on the Start Page nothing is cancelled, so the link takes you back to the Robot Bartender page
-});
 
 function isPicked(s) { // is this syrup / topping chosen? (these get a green FILL, not a frame)
   if (s.act === "syrup") return st.syrups.indexOf(s.arg) >= 0; // a syrup: is it in the chosen list?
