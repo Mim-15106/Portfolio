@@ -940,10 +940,77 @@ html.sim .bar { /* the top bar */
   border: 0; /* no frame */
   border-radius: 0; /* no rounded corners */
 }
-.simback { /* the "<" back button on the Start Page */
-  position: fixed; /* stays in the corner of the window */
+#sim .simback { /* the "<" back button, shown on every screen of the simulation */
+  position: fixed; /* stays in the corner of the window, in the dark side area (not on the picture) */
   top: 1.2rem; /* from the top */
   left: 1.2rem; /* from the left */
-  z-index: 30; /* above the invisible buttons (so it is clickable) */
+  z-index: 30; /* above the invisible buttons (so it is always clickable, even on the Start Page) */
   border: 2px solid var(--white); /* white outline so it can be seen on the dark bars */
+}
+
+.mk { /* a green mark laid over the picture */
+  position: absolute; /* placed with left/top/width/height in % (set by JS) */
+  background: #2ecc71; /* green */
+  pointer-events: none; /* clicks pass through it to the invisible button underneath */
+}
+.mk.dot { /* the round syrup button */
+  border-radius: 50%; /* make it round */
+}
+
+.gifl { /* the GIF that now works as a link */
+  display: block; /* behaves like a box, so the picture inside fills it */
+  cursor: pointer; /* hand cursor, like the button next to it */
+}
+
+/* ===================================================================
+   Phones: split rows (picture + text) stack, buttons never wrap, simulation turns landscape
+   (all new rules are added at the END so the old rules above are untouched)
+   =================================================================== */
+
+/* ---------- Buttons: the text never breaks into two lines ---------- */
+.gobtn { /* the black button with the click icon */
+  white-space: nowrap; /* keep the button text on one line */
+}
+
+/* ---------- Phones: rows that were split in half become picture on top, text below ---------- */
+@media (max-width: 960px) { /* small screens only */
+  .pmix { /* a row of picture + text (it must come AFTER the base ".pmix" rule to win, so it is here) */
+    grid-template-columns: 1fr; /* one column: the picture is big, the text goes below */
+    gap: 1.5rem; /* space between the picture and the text */
+    margin-top: 3rem; /* less space above each group on a phone */
+  }
+  .pmix > .shot, .pmix > .fig { /* the picture (or picture + caption) of a row */
+    order: -1; /* always first, even if it was on the right on a computer */
+  }
+  .indent { /* the row with extra side space (Robot Bartender, row 1) */
+    padding: 0; /* no extra side space on a phone, the picture can be big */
+  }
+}
+
+/* ---------- Simulation page on a phone held upright: turn it to landscape ---------- */
+@media (orientation: portrait) and (pointer: coarse) { /* a touch screen held upright */
+  html.sim #sim { /* the whole simulation page */
+    inset: auto; /* cancel "inset: 0" from the old rule */
+    top: 0; /* start at the top... */
+    left: 100vw; /* ...and at the right edge, because the page is rotated around its top-left corner and swings to the left */
+    width: 100vh; /* the page is as wide as the screen is tall */
+    height: 100vw; /* and as tall as the screen is wide */
+    transform-origin: top left; /* rotate around the top-left corner */
+    transform: rotate(90deg); /* turn it 90 degrees = landscape */
+  }
+  html.sim .simbox { /* the picture box inside the rotated page: its size must use the swapped screen sides */
+    --u: calc(min(100vh, 160vw) / 1280); /* 1 unit = 1 pixel of the 1280px picture, for the rotated page */
+    width: min(100vh, 160vw); /* as wide as possible but never taller than the (rotated) screen */
+  }
+}
+@supports (height: 100dvh) { /* browsers that know the "real visible height" (it ignores the phone's address bar) */
+  @media (orientation: portrait) and (pointer: coarse) { /* a touch screen held upright */
+    html.sim #sim { /* the rotated page */
+      width: 100dvh; /* use the real visible height */
+    }
+    html.sim .simbox { /* the picture box */
+      --u: calc(min(100dvh, 160vw) / 1280); /* same unit with the real visible height */
+      width: min(100dvh, 160vw); /* same width with the real visible height */
+    }
+  }
 }

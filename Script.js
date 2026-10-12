@@ -222,9 +222,9 @@ var TABS = [ // the two white tabs above the white panel (Custom pages and Toppi
   { r: [690, 243, 765, 315], act: "tabTopping" } // right tab = sugar and toppings
 ]; // end of TABS
 
-function item(id, x1, y1, x2, y2) { // one selectable syrup (a rectangle around the fruit picture and its name)
-  return { r: [x1, y1, x2, y2], act: "syrup", arg: id }; // pressing it selects / unselects that syrup
-} // end of item
+function item(id, x1, y1, x2, y2, rx, ry) { // one selectable syrup: (x1,y1,x2,y2) = the area you press, (rx,ry) = top-left corner of its round button in the picture
+  return { r: [x1, y1, x2, y2], act: "syrup", arg: id, m: [rx + 4, ry + 4, rx + 16, ry + 16], shape: "dot" }; // m = the inside of the ring (12x12 px) that turns green when chosen
+}
 
 function menuSpots() { // the invisible buttons of a Menu page (both menu pages use the same places)
   var list = [ // the fixed buttons
@@ -247,29 +247,30 @@ var SPOTS = { // all invisible buttons of every screen
   menu2: menuSpots(), // Menu page 2
   custom1: [ // Custom page 1
     { r: [1213, 537, 1268, 584], act: "cflip" }, // right arrow: go to Custom page 2
-    { r: [900, 60, 1210, 180], act: "toMenu" }, // the word MENU: go back to the Menu
+    { r: [895, 60, 1215, 205], act: "toMenu" }, // the word MENU: go back to the Menu
     BACK, TABS[0], TABS[1], // back arrow and the two tabs
-    item("lychee", 535, 370, 690, 555), item("salak", 765, 370, 915, 555), item("bluehawaii", 995, 370, 1185, 555), // first row of syrups
-    item("blueberry", 535, 555, 690, 735), item("grape", 765, 555, 915, 735), item("strawberry", 995, 555, 1185, 735) // second row of syrups
+    item("lychee", 535, 370, 690, 555, 534, 522), item("salak", 765, 370, 915, 555, 802, 522), item("bluehawaii", 995, 370, 1185, 555, 1006, 522), // first row of syrups (last two numbers = where the round button is)
+    item("blueberry", 535, 555, 690, 735, 534, 702), item("grape", 765, 555, 915, 735, 802, 702), item("strawberry", 995, 555, 1185, 735, 1006, 702), // second row of syrups
   ], // end of custom1
   custom2: [ // Custom page 2
     { r: [472, 540, 527, 584], act: "cflip" }, // left arrow: go back to Custom page 1
-    { r: [900, 60, 1210, 180], act: "toMenu" }, // the word MENU: go back to the Menu
+    { r: [895, 60, 1215, 205], act: "toMenu" }, // the word MENU: go back to the Menu
     BACK, TABS[0], TABS[1], // back arrow and the two tabs
-    item("lime", 560, 365, 740, 550), item("watermelon", 775, 365, 975, 550), item("punch", 1040, 365, 1215, 550), // first row of syrups
-    item("mixberries", 545, 555, 740, 735), item("bluelemon", 800, 555, 975, 735) // second row of syrups
+    item("lime", 560, 365, 740, 550, 574, 522), item("watermelon", 775, 365, 975, 550, 810, 522), item("punch", 1040, 365, 1215, 550, 1070, 522), // first row of syrups
+    item("mixberries", 545, 555, 740, 735, 574, 702), item("bluelemon", 800, 555, 975, 735, 810, 702), // second row of syrups
   ], // end of custom2
   topping: [ // Topping page
     BACK, TABS[0], TABS[1], // back arrow and the two tabs
+    { r: [895, 60, 1215, 205], act: "toMenu" }, // the MENU sign: go back to the Menu
     { r: [72, 648, 318, 722], act: "done" }, // the DONE button: go to the Pay page
     { r: [570, 405, 690, 460], act: "sugar", arg: "25" }, // sugar 25%
     { r: [740, 405, 860, 460], act: "sugar", arg: "50" }, // sugar 50%
     { r: [905, 405, 1025, 460], act: "sugar", arg: "75" }, // sugar 75%
     { r: [1075, 405, 1195, 460], act: "sugar", arg: "100" }, // sugar 100%
-    { r: [590, 545, 717, 725], act: "topping", arg: "cube" }, // Jelly Cube
-    { r: [738, 545, 865, 725], act: "topping", arg: "fruit" }, // Fruit Jelly
-    { r: [887, 545, 1014, 725], act: "topping", arg: "bear" }, // Jelly Bear
-    { r: [1037, 545, 1162, 725], act: "topping", arg: "none" } // No Toppings
+    { r: [590, 545, 722, 726], act: "topping", arg: "cube" }, // Jelly Cube (chosen = green frame)
+    { r: [738, 545, 870, 726], act: "topping", arg: "fruit" }, // Fruit Jelly
+    { r: [886, 545, 1018, 726], act: "topping", arg: "bear" }, // Jelly Bear
+    { r: [1038, 545, 1170, 726], act: "topping", arg: "none" } // No Toppings
   ], // end of topping
   pay: [ // Pay page
     { r: [90, 220, 530, 675], act: "pay" }, // the TrueMoney square: finish and go back to the Start Page
@@ -282,17 +283,26 @@ var simImg = $("#simImg"); // the screen picture element
 var simHot = $("#simHot"); // the layer for the invisible buttons
 var simBack = $("#simBack"); // the "<" button of the website
 
-function isOn(s) { // is this button's item currently selected?
+simBack.addEventListener("click", function (e) { // when the website's "<" button is pressed
+  if (st.screen !== "start") { // on any screen except the Start Page...
+    e.preventDefault(); // ...do not leave the simulation...
+    simClick({ act: "back" }); // ...just go back one screen
+  } // on the Start Page nothing is cancelled, so the link takes you back to the Robot Bartender page
+});
+
+function isPicked(s) { // is this syrup / topping chosen? (these get a green FILL, not a frame)
   if (s.act === "syrup") return st.syrups.indexOf(s.arg) >= 0; // a syrup: is it in the chosen list?
-  if (s.act === "sugar") return st.sugar === s.arg; // a sugar level: is it the chosen one?
   if (s.act === "topping") return st.topping === s.arg; // a topping: is it the chosen one?
-  return false; // other buttons are never "selected"
-} // end of isOn
+  return false; // everything else: no
+} // end of isPicked
+function isOn(s) { // does this button get the green FRAME? (sugar levels and toppings; syrups get a green fill instead)
+  return (s.act === "sugar" && st.sugar === s.arg) || // a sugar level: is it the chosen one?
+    (s.act === "topping" && st.topping === s.arg); // a topping: is it the chosen one?
+}
 
 function simDraw() { // show the current screen: picture + invisible buttons
   var want = SIM[st.screen]; // the picture file of this screen
   if (simImg.getAttribute("src") !== want) simImg.src = want; // change the picture only when needed
-  simBack.hidden = st.screen !== "start"; // the website's "<" button exists ONLY on the Start Page
   simHot.innerHTML = ""; // remove the old invisible buttons
   SPOTS[st.screen].forEach(function (s) { // make a button for every spot of this screen
     var b = document.createElement("button"); // a new button
@@ -302,6 +312,12 @@ function simDraw() { // show the current screen: picture + invisible buttons
     if (!s.full) b.style.cssText = pct(s.r); // place it over the picture (the full one needs no place)
     b.addEventListener("click", function () { simClick(s); }); // run the action when clicked
     simHot.appendChild(b); // put it on the page
+    if (s.m && isPicked(s)) { // a chosen syrup / topping: lay a green fill over its round button / bar
+      var k = document.createElement("div"); // a new mark
+      k.className = "mk " + s.shape; // "mk dot" (round) or "mk bar" (rectangle)
+      k.style.cssText = pct(s.m); // place it over the picture
+      simHot.appendChild(k); // put it on the page
+    }
   }); // end of the loop
 } // end of simDraw
 
@@ -327,13 +343,14 @@ function simClick(s) { // what happens when an invisible button is pressed
     st.syrups = []; st.sugar = ""; st.topping = ""; // clear old choices
     simShow("topping"); // go to the Topping page
   } else if (a === "toCustom") { // the word CUSTOM on a Menu page
+    st.menuPage = st.screen; // remember which Menu page the user came from (Menu 1 or Menu 2)
     st.flow = "custom"; // the user is making a custom drink
     st.syrups = []; st.sugar = ""; st.topping = ""; // clear old choices
     simShow("custom1"); // go to Custom page 1
   } else if (a === "toMenu") { // the word MENU on a Custom page
     st.flow = ""; // not custom any more
     st.syrups = []; st.sugar = ""; st.topping = ""; // clear old choices
-    simShow("menu1"); // go to Menu 1
+    simShow(st.menuPage || "menu1"); // go back to the Menu page the user came from (Menu 1 if unknown) 
   } else if (a === "cflip") { // arrows on the Custom pages
     simShow(st.screen === "custom1" ? "custom2" : "custom1"); // switch between Custom 1 and Custom 2
   } else if (a === "syrup") { // pressing a syrup
@@ -366,8 +383,10 @@ function simClick(s) { // what happens when an invisible button is pressed
     simShow("pay"); // go to the Pay page
   } else if (a === "pay") { // TrueMoney or PromptPay
     simReset(); // back to the Start Page, everything cleared
-  } else if (a === "back") { // the little back arrow icon inside the pictures
-    if (st.screen === "topping") { // on the Topping page...
+  } else if (a === "back") { // the "<" button (or the little arrow drawn in the pictures): go back ONE screen
+    if (st.screen === "pay") { // on the Pay page...
+      simShow("topping"); // ...go back to the Topping page
+    } else if (st.screen === "topping") { // on the Topping page...
       simShow(st.flow === "menu" ? st.menuPage : "custom1"); // ...go back to where the user came from
     } else if (st.screen.indexOf("custom") === 0) { // on a Custom page...
       simClick({ act: "toMenu" }); // ...go back to the Menu
@@ -385,3 +404,37 @@ function onSimRoute() { // runs whenever the address changes
 window.addEventListener("hashchange", onSimRoute); // run it every time the address changes
 simReset(); // prepare the state once now
 onSimRoute(); // and check once now, for the page that is open at the start
+
+
+// ===================================================================
+// Simulation page on a phone: force the landscape (full screen) view
+// ===================================================================
+var isTouch = window.matchMedia && window.matchMedia("(pointer: coarse)").matches; // true on phones and tablets (not on a computer with a mouse)
+
+function enterLandscape() { // try to make the phone really full screen and landscape
+  if (!isTouch) return; // a computer: do nothing
+  var d = document.documentElement; // the whole page
+  try { // (every step can be refused by some browsers, so nothing here may break the page)
+    var p = d.requestFullscreen ? d.requestFullscreen() : null; // 1) ask for full screen (the browser only allows it right after a tap)
+    if (p && p.then) { // 2) when full screen is on...
+      p.then(function () { // ...ask the phone to turn to landscape
+        if (screen.orientation && screen.orientation.lock) screen.orientation.lock("landscape").catch(function () {}); // lock landscape (Android Chrome); if refused, the CSS rotation is used instead
+      }).catch(function () {}); // full screen refused: the CSS rotation is used instead
+    } // end of if
+  } catch (e) {} // ignore any error
+} // end of enterLandscape
+
+function leaveLandscape() { // give the phone its normal screen back
+  if (!isTouch) return; // a computer: do nothing
+  try { // (ignore any error)
+    if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); // allow the phone to turn freely again
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {}); // leave full screen
+  } catch (e) {} // ignore any error
+} // end of leaveLandscape
+
+document.querySelectorAll('a[href="#/sim"]').forEach(function (a) { // the GIF and the "Robot Bartender" button that open the simulation
+  a.addEventListener("click", enterLandscape); // a real tap: the only moment the browser allows full screen
+}); // end of the loop
+window.addEventListener("hashchange", function () { // every time the address changes...
+  if (location.hash !== "#/sim") leaveLandscape(); // ...and we are no longer on the simulation page, go back to normal
+}); // end

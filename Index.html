@@ -27,7 +27,7 @@
 
 <main class="page" id="home"> <!-- home page -->
   <section class="intro">
-    <img src="Pictures/Portrait.jpg" alt=""> <!-- ❗ Don't forgot to change picture ❗ -->
+    <img src="Pictures/Portrait.jpg" alt=""> <!-- ❗ Don't forgot to change picture -->
     <div class="who"> 
       <h1> 
         <span class="first" data-th="รวิสรา" data-en="Rawissara"></span> 
@@ -145,7 +145,7 @@
     <p class="cap" data-th="โมเดลตัวเครื่อง Robot Bartender" data-en="Robot Bartender Model"></p> <!-- caption under the sliding pictures -->
 
     <div class="pmix mid" style="--cols:1.5fr 1fr"> <!-- last row: big GIF on the left, button on the right -->
-      <img class="shot" src="Pictures/StartPage.gif" alt="" style="--r:1.6/1"> <!-- the start screen of the simulated program -->
+      <a class="shot gifl" href="#/sim" aria-label="Open the Robot Bartender simulation"><img src="Pictures/StartPage.gif" alt="" style="--r:1.6/1"></a> <!-- the GIF is now a link to the simulation page, exactly like the "Robot Bartender" button next to it -->
       <div class="side ctr"> <!-- right column, centered -->
         <a class="gobtn" href="#/sim">Robot Bartender<img src="Pictures/Click.png" alt=""></a> <!-- opens the full-screen simulation page (same page, not a new tab) -->
         <p class="cap" data-th="ซอฟต์แวร์จำลองจาก Robot Bartender" data-en="Robot Bartender Interactive UI Prototype"></p> <!-- caption under the button -->
@@ -264,10 +264,10 @@
 
 <!-- ========== Simulation page: fake machine program, full screen ========== -->
 <main class="page" id="sim" hidden> <!-- full-screen page (it covers the top bar) -->
-  <a class="back simback" id="simBack" href="#/project" aria-label="Back">&lt;</a> <!-- "<" button, only visible on the Start Page (JS hides it on other screens) -->
+  <a class="back simback" id="simBack" href="#/project" aria-label="Back">&lt;</a> <!-- "<" button on EVERY screen; it is outside the picture box, so it sits in the dark side area and never covers the picture. On the Start Page it leaves to the Robot Bartender page; on other screens JS makes it go back one screen -->
   <div class="simbox"> <!-- box with the same 16:10 shape as the screen pictures -->
     <img class="simimg" id="simImg" src="Pictures/StartPage.gif" alt=""> <!-- the current screen picture (JS swaps it) -->
-    <div id="simHot"></div> <!-- JS puts the invisible buttons here -->
+    <div id="simHot"></div> <!-- JS puts the invisible buttons (and the green fills) here -->
   </div>
 </main>
 
